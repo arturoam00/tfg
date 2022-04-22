@@ -25,7 +25,8 @@ def solver_FE_simple(I, a, L, Nx, F, T, r, K):
     for n in range(0, Nt):
         # Compute u at inner mesh points
         for i in range(1, Nx):
-            u[i] = u_1[i] + dt * r * u_1[i] * (1 - u_1[i] / K) + F*(u_1[i-1] - 2*u_1[i] + u_1[i+1])
+            u[i] = u_1[i] + dt * r * u_1[i] * (1 - u_1[i] / K) * (u_1[i] / K) ** 0\
+             + F*(u_1[i-1] - 2*u_1[i] + u_1[i+1])
 
         # Insert boundary conditions
         # u[0] = 1;  u[Nx] = 1
@@ -37,16 +38,17 @@ def solver_FE_simple(I, a, L, Nx, F, T, r, K):
     return u, x, t, t1-t0
 
 def I(x):
-    if x < .25 * L or x > .75 * L:
+    if x < .35 * L or x > .65 * L:
         return 1
     else:
         return .2
 
-r = .1
+r = .01
 K = 1
 a = 8
 L = 80
-u, x, t, time = solver_FE_simple(I, 1, L, 500, .2, 12, r, K)
+t = float(input("insert time"))
+u, x, t, time = solver_FE_simple(I, 1, L, 500, .4, t, r, K)
 
 pl.plot(x, u)
 pl.ylim(0, 1.2)
