@@ -1,11 +1,11 @@
-import sys, time
+import time
 import numpy as np
-import pylab as pl
+import matplotlib.pyplot as pl
 
 def solver_FE_simple(I, a, L, Nx, F, T, r, K):
     
     import time
-    t0 = time.clock()
+    t0 = time.time()
 
     x = np.linspace(0, L, Nx+1)   # mesh points in space
     dx = x[1] - x[0]
@@ -29,12 +29,12 @@ def solver_FE_simple(I, a, L, Nx, F, T, r, K):
              + F*(u_1[i-1] - 2*u_1[i] + u_1[i+1])
 
         # Insert boundary conditions
-        # u[0] = 1;  u[Nx] = 1
+        u[0] = 1;  u[Nx] = 1
 
         # Switch variables before next step
         u_1, u = u, u_1
 
-    t1 = time.clock()
+    t1 = time.time()
     return u, x, t, t1-t0
 
 def I(x):
