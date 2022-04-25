@@ -1,6 +1,6 @@
 import time
 import numpy as np
-import matplotlib.pyplot as pl
+import pylab as pl
 
 def solver_FE_simple(I, a, L, Nx, F, T, r, K):
     

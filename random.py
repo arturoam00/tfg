@@ -1,13 +1,12 @@
-import time
+# import time
 import numpy as np
 import pylab as pl
-from random import seed, random
+# from random import seed, random
 
-def iterator(T, d, r, L = 80, Nx = 500, Nt = 500, K = 1):   #(I, a, L, Nx, F, T, r, K):
+def iterator(T, d, r, L = 80, Nx = 500, Nt = 500, K = 1.0):   #(I, a, L, Nx, F, T, r, K):
     
-    import time
-    t0 = time.time()
-    seed(1)
+    # seed(1)
+    #t0 = time.time()
 
     gamma = 1
 
@@ -27,7 +26,7 @@ def iterator(T, d, r, L = 80, Nx = 500, Nt = 500, K = 1):   #(I, a, L, Nx, F, T,
     for n in range(0, Nt):
 
         for i in range(0, Nx + 1):
-            num = random()
+            num =  .3#random()
 
             N[i] += dt * r * N[i] * (1 - N[i] / K) * (N[i] / K) ** gamma
 
@@ -36,21 +35,25 @@ def iterator(T, d, r, L = 80, Nx = 500, Nt = 500, K = 1):   #(I, a, L, Nx, F, T,
                 N[i] -= m
                 N[(i + 1) % (Nx + 1)] += m  
 
-    t1 = time.time()
+    # t1 = time.time()
 
-    return N, x, t1-t0
+    return N, x #t1-t0
 
 r = .01
 d = 8
+L = 80
+Nx = 500
+Nt = 500
+K = 1
 T = float(input("insert time"))
-N, x, time = iterator(T, d, r, L = 80, Nx = 500, Nt = 500, K = 1)
+N, x = iterator(T, d, r, L , Nx , Nt , K)
 
-print("time consumed: ", time)
+# print("time consumed: ", time)
 
-pl.plot(x, N)
-pl.ylim(0, 1.2)
-pl.xlim(0, x.max())
-pl.show()
+# pl.plot(x, N)
+# pl.ylim(0, 1.2)
+# pl.xlim(0, x.max())
+# pl.show()
 
 
 
