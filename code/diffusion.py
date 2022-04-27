@@ -63,14 +63,14 @@ def draw(a, r, t, I, Nx, F, L, K):
     pl.show()
 
 fun = I
-Nx = 200
+Nx = 20
 F = .4
-L = 1
+L = 10
 K = 2
 
-a = 80
-r = .1
-t = [0, .0001]
+a = 8
+r = .01
+t = [0, .1, 3, 10]
 
 draw(a, r, t, fun, Nx, F, L, K)
 
