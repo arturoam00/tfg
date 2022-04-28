@@ -26,9 +26,9 @@ def diffusionf(I, a, T, r, Nx = 500, F = .4, L = 80, K = 1):
 
     for n in range(0, Nt):
         # Compute u at inner mesh points
-        for i in range(1, Nx):
+        for i in range(0, Nx + 1):
             u[i] = u_1[i] + dt * r * u_1[i] * (1 - u_1[i] / K) * (u_1[i] / K) ** gamma\
-             + F * (u_1[i - 1] - 2 * u_1[i] + u_1[i + 1])
+             + F * (u_1[(i - 1) % (Nx + 1)] - 2 * u_1[i] + u_1[(i + 1) % (Nx + 1)])
 
 
         # Switch variables before next step
@@ -63,14 +63,14 @@ def draw(a, r, t, I, Nx, F, L, K):
     pl.show()
 
 fun = I
-Nx = 20
+Nx = 300
 F = .4
-L = 10
-K = 2
+L = 1
+K = 1
 
 a = 8
 r = .01
-t = [0, .1, 3, 10]
+t = [0, .001, .01, 0.1, .9]
 
 draw(a, r, t, fun, Nx, F, L, K)
 
