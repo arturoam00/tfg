@@ -7,14 +7,14 @@ def diffusionf(I, a, T, tsteps, r, Nx = 500, F = .4, L = 80, K = 1):
     
     t0 = time.time()
     
-    gamma = 0
+    gamma = 3
 
     dx = L / Nx
     x = np.linspace(0, L, Nx)
 
     dt = F * dx ** 2 / a
     t = 0.0
-    eps = dt / 1000
+    eps = dt / 2
 
     u_1 = np.empty(Nx, float)
     u   = np.empty(Nx, float)  
@@ -49,19 +49,19 @@ def diffusionf(I, a, T, tsteps, r, Nx = 500, F = .4, L = 80, K = 1):
 def I(u, L, K):
     l = len(u)
     u[0:l] = K
-    u[int(.25 * l):int(.75 * l)] = .2 * K
+    u[int(.4 * l):int(.6 * l)] = .2 * K
     return u
 
 fun = I
 Nx = 300
 F = .4
-L = 1
+L = 100
 K = 1
 
-a = 8
-r = .01
+a = 1
+r = 1
 T = float(input("Insert time: "))
-tsteps = [.01, .02, .9, 2, T]
+tsteps = [0, T]
 
 diffusionf(I, a, T, tsteps, r, Nx, F, L, K)
 
