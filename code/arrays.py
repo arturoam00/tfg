@@ -48,18 +48,19 @@ def diffusionf(I, a, T, tsteps, r, Nx = 500, F = .4, L = 80, K = 1):
 
 def I(u, L, K):
     l = len(u)
+    sigma, rho = .5, .85
     u[0:l] = K
-    u[int(.4 * l):int(.6 * l)] = .2 * K
+    u[int((.5 - sigma / 2) * l):int((.5 + sigma / 2) * l)] = (1 - rho) * K
     return u
 
 fun = I
-Nx = 300
+Nx = 200
 F = .4
-L = 100
+L = 80
 K = 1
 
-a = 1
-r = 1
+a = 8
+r = .01
 T = float(input("Insert time: "))
 tsteps = [0, T]
 
