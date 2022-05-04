@@ -2,6 +2,7 @@ import time
 import numpy as np
 import pylab as pl
 from aux import return_time, step_fun
+import sys
 
 
 fun = step_fun
@@ -13,7 +14,7 @@ K = 1
 a = 10
 r = 1
 
-size = 10
+size = int(sys.argv[1])
 
 rho_values = np.linspace(0, .9, size)
 sigma_values = np.linspace(0, 1, size)
