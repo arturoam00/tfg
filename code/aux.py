@@ -1,5 +1,8 @@
 ##Auxiliary functions
+
 import numpy as np
+import pylab as pl
+import copy
 
 ## Initial step function
 def step_fun(u, L, K, sigma, rho):
@@ -9,33 +12,35 @@ def step_fun(u, L, K, sigma, rho):
     u[int((.5 - sigma / 2) * l):int((.5 + sigma / 2) * l)] = (1 - rho) * K
     return u, s
 
-## Find nearest element index function
+## Find nearest element index function which is equal to a certain value in a list within some threshold
 def find(vec, elem):  
     result = []
-    vec = np.round(vec, 1)
+    vec = np.round(vec, 3)
+    elem = np.round(elem, 3)
     for i in range(0, len(vec)):
-        for j in elem:
-            if vec[i] == j:
+        for j in range(0, len(elem)):
+            if vec[i] == elem[j]:
                 result = np.append(result, i)
-                elem.remove(j)
+                elem[j] = 9999.99999
     return result
 
-# Returns time of recovery defined as time to get back to .99 K
-def return_time(I, a, r, Nx, F, L, K, sigma, rho):
+def return_time(a, r, sigma = .5, rho = .85, Nx = 500, I = step_fun, F = .4, L = 80, K = 1, gamma = 3, show = True):
     
-    gamma = 3
+    #Añade una condición para que si el ratio entre r y d es algo mayor que 1 Nx sea mayor que 300
+    
+    col_list = []                                             
 
     ## Vector espacial
     dx = L / Nx
     x = np.linspace(0, L, Nx)
 
-    ## Vector con valores de la integral para cada t
-    integral = []
-    suma = 0
+    time_vec = np.array([])   
+    integral = np.array([])
 
     dt = F * dx ** 2 / a
     t = 0.0
-    eps = dt / 2
+    eps = .01
+    suma = 0
 
     u_1 = np.empty(Nx, float)
     u   = np.empty(Nx, float)  
@@ -44,17 +49,68 @@ def return_time(I, a, r, Nx, F, L, K, sigma, rho):
     u_1, s = I(u_1, L, K, sigma, rho)
     u = u_1
 
+    values = K - np.array([1, .75, .5, .25, .01]) * s
+    values_copy = copy.copy(values)
 
-    while suma < .99 * K:
+    if show:
+        plot1 = pl.figure(1)
 
+    while suma < .999 * K:
         u[0:Nx] = u_1[0:Nx] + dt * r * u_1[0:Nx] * (1 - u_1[0:Nx] / K) * (u_1[0:Nx] / K) ** gamma\
         + F * (np.append(u_1[Nx-1], u_1[0:Nx-1]) - 2 * u_1[0:Nx] + np.append(u_1[1:Nx], u_1[0]))
 
         # Integral of u(x, t) 
         suma = np.sum(u * dx) / L
-        integral.append(suma)
+        integral = np.append(integral, suma)
+        time_vec = np.append(time_vec, t)
 
         u_1, u = u, u_1
         t+=dt
 
-    return np.round(t-dt, 4)
+        if show:
+            for i in range(0, len(values)):
+                if abs(suma - values[i])<eps:
+                    col_list.append(pl.plot(x, u, label = "t%i" %i))
+                    values[i] = 9999.9999
+
+    if show:
+
+        pl.xlim(0, x.max() )
+        pl.ylim(0, 1.2 * K)
+        pl.ylabel("Biomasa")
+        pl.xlabel("x")
+        pl.title("r = "+str(r)+" d = "+str(a))
+        pl.legend(loc = 4)
+
+        ## Plot para la integral de la biomasa en funcion de t
+        plot2 = pl.figure(2)
+
+        time_vec_help = np.append(np.linspace(-.05 * time_vec.max(), 0, 100), time_vec)
+        integral_help = np.append(np.repeat(K, 100), integral)
+
+        pl.plot(time_vec_help, integral_help)    
+        pl.ylim(.95 - s, 1.02 * K)
+        pl.xlim(time_vec_help.min(), time_vec_help.max()+.005 * time_vec_help.max())
+        pl.ylabel("Biomasa / K")
+        pl.xlabel("Tiempo")
+
+        markers = find(integral, values_copy)
+        c = 0
+        for i in markers:
+            pl.plot(time_vec[i], integral[i], color = col_list[c][0].get_color(), marker = "o")    
+            c+=1
+
+
+        ## Plot para el parameter space de las disturbances
+        plot3 = pl.figure(3)
+        x_vec = np.linspace(0.01, 1, 100)
+        y_vec = s / x_vec
+        pl.plot(x_vec, y_vec, "k--")
+        pl.plot(rho, sigma, "ro")
+        pl.xlabel("Intensidad de la perturbacion, " + r"$\rho$")
+        pl.ylabel("Extension de la perturbacion, "+ r"$\sigma$")
+        pl.text(.6, s / .6 + .05, "s = %.2f" %s)
+        pl.ylim(0, 1)
+
+
+    return r * (t-dt), s
