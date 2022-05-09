@@ -10,7 +10,7 @@ a = float(sys.argv[2])
 try:
 	Nx = int(sys.argv[3])
 except:
-	Nx = 500
+	Nx = 200
 try:
 	sigma = float(sys.argv[4])
 except:
@@ -20,7 +20,7 @@ try:
 except:
 	rho = .85
 
-tau, s = return_time(a, r, sigma = sigma, rho = rho, Nx = Nx, I = step_fun, F = .4, L = 80, K = 1, gamma = 3, show = True)
+tau, s = return_time(a, r, sigma = sigma, rho = rho, Nx = Nx, I = step_fun, F = .4, L = 80, K = 40, gamma = 3, show = True)
 
 print("Return time is: %.2f for a total perturbance of: %.2f" %(tau, s))
 pl.show()

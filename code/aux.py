@@ -15,18 +15,17 @@ def step_fun(u, L, K, sigma, rho):
 ## Find nearest element index function which is equal to a certain value in a list within some threshold
 def find(vec, elem):  
     result = []
-    vec = np.round(vec, 3)
-    elem = np.round(elem, 3)
+    eps = .01
     for i in range(0, len(vec)):
         for j in range(0, len(elem)):
-            if vec[i] == elem[j]:
-                result = np.append(result, i)
+            if abs(vec[i] - elem[j])<eps:
+                result.append(i)
                 elem[j] = 9999.99999
     return result
 
-def return_time(a, r, sigma = .5, rho = .85, Nx = 500, I = step_fun, F = .4, L = 80, K = 1, gamma = 3, show = True):
+def return_time(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L = 80, K = 1, gamma = 3, show = True):
     
-    #Añade una condición para que si el ratio entre r y d es algo mayor que 1 Nx sea mayor que 300
+    #Añade una condición en función de l_eff para ajustar el Nx 
     
     col_list = []                                             
 
@@ -49,13 +48,13 @@ def return_time(a, r, sigma = .5, rho = .85, Nx = 500, I = step_fun, F = .4, L =
     u_1, s = I(u_1, L, K, sigma, rho)
     u = u_1
 
-    values = K - np.array([1, .75, .5, .25, .01]) * s
+    values = K * (1 - np.array([1, .97, .9, .5, .2,  .025]) * s)
     values_copy = copy.copy(values)
 
     if show:
         plot1 = pl.figure(1)
 
-    while suma < .999 * K:
+    while suma < .99 * K:
         u[0:Nx] = u_1[0:Nx] + dt * r * u_1[0:Nx] * (1 - u_1[0:Nx] / K) * (u_1[0:Nx] / K) ** gamma\
         + F * (np.append(u_1[Nx-1], u_1[0:Nx-1]) - 2 * u_1[0:Nx] + np.append(u_1[1:Nx], u_1[0]))
 
@@ -90,13 +89,13 @@ def return_time(a, r, sigma = .5, rho = .85, Nx = 500, I = step_fun, F = .4, L =
 
         pl.plot(time_vec_help, integral_help)    
         pl.ylim(.95 - s, 1.02 * K)
-        pl.xlim(time_vec_help.min(), time_vec_help.max()+.005 * time_vec_help.max())
+        pl.xlim(time_vec_help.min(), time_vec_help.max()+.003 * time_vec_help.max())
         pl.ylabel("Biomasa / K")
         pl.xlabel("Tiempo")
 
         markers = find(integral, values_copy)
         c = 0
-        for i in markers:
+        for i in markers:  
             pl.plot(time_vec[i], integral[i], color = col_list[c][0].get_color(), marker = "o")    
             c+=1
 
@@ -111,6 +110,7 @@ def return_time(a, r, sigma = .5, rho = .85, Nx = 500, I = step_fun, F = .4, L =
         pl.ylabel("Extension de la perturbacion, "+ r"$\sigma$")
         pl.text(.6, s / .6 + .05, "s = %.2f" %s)
         pl.ylim(0, 1)
+        pl.xlim(0, 1)
 
 
     return r * (t-dt), s
