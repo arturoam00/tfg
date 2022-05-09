@@ -121,9 +121,62 @@ def return_time(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L =
         pl.text(.6, s / .6 + .05, "s = %.2f" %s)
         pl.ylim(0, 1)
         pl.xlim(0, 1)
+
         if saveImage:
             pl.savefig("../images/perfiles/parametros_%i_%i" %(r, a), bbox_inches = "tight")
 
 
     return r * (t-dt), s
+
+
+def compare(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L = 80, K = 1, gamma = 3):
+    
+    #Añade una condición en función de l_eff para ajustar el Nx 
+    
+    ## Vector espacial
+    dx = L / Nx
+    x = np.linspace(0, L, Nx)
+
+    time_vec = np.array([])   
+    integral = np.array([])
+    integral_ir = np.array([])
+
+    dt = F * dx ** 2 / a
+    t = 0.0
+    eps = .01
+    suma = 0
+    suma_ir = 0 
+
+    u_1 = np.empty(Nx, float)
+    u   = np.empty(Nx, float)
+    u_1_ir = np.empty(Nx, float)
+    u_ir = np.empty(Nx, float)  
+
+    # Set initial condition u(x,0) = I(x)
+    u_1, s = I(u_1, L, K, sigma, rho)
+    u = u_1
+
+    u_1_ir, _ = I(u_1_ir, L, K, sigma, rho)
+    u_ir = u_1_ir
+
+    while suma < .99 * K:
+        u[0:Nx] = u_1[0:Nx] + dt * r * u_1[0:Nx] * (1 - u_1[0:Nx] / K) * (u_1[0:Nx] / K) ** gamma\
+        + F * (np.append(u_1[Nx-1], u_1[0:Nx-1]) - 2 * u_1[0:Nx] + np.append(u_1[1:Nx], u_1[0]))
+
+        u_ir[0:Nx] = u_1_ir[0:Nx] + dt * r * u_1_ir[0:Nx] * (1 - u_1_ir[0:Nx] / K) * (u_1_ir[0:Nx] / K) ** gamma
+
+        # Integral of u(x, t) 
+        suma = np.sum(u * dx) / L
+        suma_ir = np.sum(u_ir * dx) / L
+
+        integral = np.append(integral, suma)
+        integral_ir = np.append(integral_ir, suma_ir)
+        time_vec = np.append(time_vec, t)
+
+        u_1, u = u, u_1
+        u_1_ir, u_ir = u_ir, u_1_ir
+
+        t+=dt
+
+    return integral, integral_ir
 
