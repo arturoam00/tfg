@@ -23,7 +23,7 @@ def find(vec, elem):
                 elem[j] = 9999.99999
     return result
 
-def return_time(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L = 80, K = 1, gamma = 3, show = True):
+def return_time(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L = 80, K = 1, gamma = 3, show = False, saveImage = False):
     
     #Añade una condición en función de l_eff para ajustar el Nx 
     
@@ -36,7 +36,12 @@ def return_time(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L =
     time_vec = np.array([])   
     integral = np.array([])
 
-    dt = F * dx ** 2 / a
+    if a != 0:
+        dt = F * dx ** 2 / a
+    else: 
+        F = 0
+        dt = .01
+
     t = 0.0
     eps = .01
     suma = 0
@@ -80,6 +85,8 @@ def return_time(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L =
         pl.xlabel("x")
         pl.title("r = "+str(r)+" d = "+str(a))
         pl.legend(loc = 4)
+        if saveImage:
+            pl.savefig("../images/perfiles/perfiles_%i_%i" %(r, a), bbox_inches = "tight")
 
         ## Plot para la integral de la biomasa en funcion de t
         plot2 = pl.figure(2)
@@ -98,6 +105,8 @@ def return_time(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L =
         for i in markers:  
             pl.plot(time_vec[i], integral[i], color = col_list[c][0].get_color(), marker = "o")    
             c+=1
+        if saveImage:
+            pl.savefig("../images/perfiles/integral_%i_%i" %(r, a), bbox_inches = "tight")
 
 
         ## Plot para el parameter space de las disturbances
@@ -108,9 +117,13 @@ def return_time(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L =
         pl.plot(rho, sigma, "ro")
         pl.xlabel("Intensidad de la perturbacion, " + r"$\rho$")
         pl.ylabel("Extension de la perturbacion, "+ r"$\sigma$")
+        pl.title(r"$s = \sigma\rho$" + " = %.2f" %s)
         pl.text(.6, s / .6 + .05, "s = %.2f" %s)
         pl.ylim(0, 1)
         pl.xlim(0, 1)
+        if saveImage:
+            pl.savefig("../images/perfiles/parametros_%i_%i" %(r, a), bbox_inches = "tight")
 
 
     return r * (t-dt), s
+

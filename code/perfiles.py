@@ -20,7 +20,7 @@ try:
 except:
 	rho = .85
 
-tau, s = return_time(a, r, sigma = sigma, rho = rho, Nx = Nx, I = step_fun, F = .4, L = 80, K = 40, gamma = 3, show = True)
+tau, s = return_time(a, r, sigma = sigma, rho = rho, Nx = Nx, I = step_fun, F = .4, L = 80, K = 1, gamma = 3, show = True, saveImage = False)
 
 print("Return time is: %.2f for a total perturbance of: %.2f" %(tau, s))
 pl.show()
