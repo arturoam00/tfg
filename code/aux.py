@@ -23,10 +23,13 @@ def find(vec, elem):
                 elem[j] = 9999.99999
     return result
 
-def return_time(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L = 80, K = 1, gamma = 3, show = False, saveImage = False):
+def return_time(a, r, L, sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gamma = 3, show = False, saveImage = False):
     
-    #Añade una condición en función de l_eff para ajustar el Nx 
-    
+    if a != 0:
+        Nx = L * np.sqrt(r / a)    
+    else: 
+        Nx = L * r
+
     col_list = []                                             
 
     ## Vector espacial
@@ -88,7 +91,7 @@ def return_time(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L =
         if saveImage:
             pl.savefig("../images/perfiles/perfiles_%i_%i" %(r, a), bbox_inches = "tight")
 
-        ## Plot para la integral de la biomasa en funcion de t
+        # Plot para la integral de la biomasa en funcion de t
         plot2 = pl.figure(2)
 
         time_vec_help = np.append(np.linspace(-.05 * time_vec.max(), 0, 100), time_vec)
@@ -139,13 +142,13 @@ def compare(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L = 80,
 
     time_vec = np.array([])   
     integral = np.array([])
-    integral_ir = np.array([])
+    # integral_ir = np.array([])
 
     dt = F * dx ** 2 / a
     t = 0.0
     eps = .01
     suma = 0
-    suma_ir = 0 
+    # suma_ir = 0 
 
     u_1 = np.empty(Nx, float)
     u   = np.empty(Nx, float)
@@ -167,10 +170,10 @@ def compare(a, r, sigma = .5, rho = .85, Nx = 200, I = step_fun, F = .4, L = 80,
 
         # Integral of u(x, t) 
         suma = np.sum(u * dx) / L
-        suma_ir = np.sum(u_ir * dx) / L
+        # suma_ir = np.sum(u_ir * dx) / L
 
         integral = np.append(integral, suma)
-        integral_ir = np.append(integral_ir, suma_ir)
+        # integral_ir = np.append(integral_ir, suma_ir)
         time_vec = np.append(time_vec, t)
 
         u_1, u = u, u_1

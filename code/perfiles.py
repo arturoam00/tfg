@@ -6,11 +6,8 @@ from aux import *
 
 r = float(sys.argv[1])
 a = float(sys.argv[2])
+L = int(sys.argv[3])
 
-try:
-	Nx = int(sys.argv[3])
-except:
-	Nx = 200
 try:
 	sigma = float(sys.argv[4])
 except:
@@ -20,9 +17,12 @@ try:
 except:
 	rho = .85
 
-tau, s = return_time(a, r, sigma = sigma, rho = rho, Nx = Nx, I = step_fun, F = .4, L = 80, K = 1, gamma = 3, show = True, saveImage = False)
+
+
+tau, s = return_time(a, r, L, sigma = sigma, rho = rho, I = step_fun, F = .4, K = 1, gamma = 3, show = True, saveImage = False)
 
 print("Return time is: %.2f for a total perturbance of: %.2f" %(tau, s))
+# print(L * np.sqrt(r / a))
 pl.show()
 
 
