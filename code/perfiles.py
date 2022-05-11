@@ -20,10 +20,10 @@ except:
 
 
 tau, s = return_time(a, r, L, sigma = sigma, rho = rho, I = step_fun, F = .4, K = 1, gamma = 3, show = True, saveImage = False)
-
 print("Return time is: %.2f for a total perturbance of: %.2f" %(tau, s))
-# print(L * np.sqrt(r / a))
 pl.show()
+
+
 
 
 
