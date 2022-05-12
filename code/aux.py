@@ -96,7 +96,7 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         t+=dt
 
         if compare:
-            if .99 * umax > u.max():
+            if .9 * umax > u.max():
                 mixing = True
                 break 
 
