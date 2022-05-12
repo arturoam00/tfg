@@ -9,17 +9,21 @@ a = float(sys.argv[2])
 L = int(sys.argv[3])
 
 try:
-	sigma = float(sys.argv[4])
+	Nx = float(sys.argv[4])
+except:
+	Nx = ""
+try:
+	sigma = float(sys.argv[5])
 except:
 	sigma = .5
 try:
-	rho = float(sys.argv[5])
+	rho = float(sys.argv[6])
 except:
 	rho = .85
 
 
 
-tau, s = return_time(a, r, L, sigma = sigma, rho = rho, I = step_fun, F = .4, K = 1, gamma = 3, show = True, saveImage = False)
+tau, s, mix= return_time(a, r, L, Nx, sigma = sigma, rho = rho, I = step_fun, F = .4, K = 1, gamma = 3, show = True, saveImage = False, compare = False)
 print("Return time is: %.2f for a total perturbance of: %.2f" %(tau, s))
 pl.show()
 

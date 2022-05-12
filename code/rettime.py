@@ -10,17 +10,22 @@ a = float(sys.argv[2])
 L = int(sys.argv[3])
 
 try:
-    size = int(sys.argv[4])
+    Nx = float(sys.argv[4])
+except:
+    Nx = ""
+
+try:
+    size = int(sys.argv[5])
 except:
     size = 20
 
-rho_values = np.linspace(0.15, 1, size)
-sigma_values = np.linspace(0.15, .98, size)
+rho_values = np.linspace(0.15, .95, size)
+sigma_values = np.linspace(0.15, .95, size)
 tau_values = np.empty(shape = (size, size), dtype = float)
 
 for i in range(0,size):
     for j in range(0, size):
-        tau_values[i, j], _ = return_time(a, r, L, sigma_values[j], rho_values[i], I = step_fun, F = .4, K = 1, gamma = 3)
+        tau_values[i, j], _ , _= return_time(a, r, L, Nx, sigma_values[j], rho_values[i], I = step_fun, F = .4, K = 1, gamma = 3)
 
 
 contours = pl.contour(rho_values, sigma_values, np.log10(tau_values), 5, colors = "black")

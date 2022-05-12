@@ -23,9 +23,8 @@ def find(vec, elem):
                 elem[j] = 9999.99999
     return result
 
-def return_time(a, r, L, sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gamma = 3, show = False, saveImage = False):
-    
-    # Nx = 50
+def fix_nx(L, a, r):
+    Nx = 0
     if a != 0:
         if a / r < 1:
             Nx = int(L * np.sqrt(r / a))
@@ -37,14 +36,19 @@ def return_time(a, r, L, sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gam
         elif a / r == 1:
             Nx = int(L + 100)
     else: 
-        Nx = 0
+        Nx = 200
+    return Nx
 
 
+def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gamma = 3, show = False, saveImage = False, compare = False):
+    
+    if Nx == "":
+        Nx = fix_nx(L, a, r)
+    
     col_list = []                                             
 
     ## Vector espacial
     dx = L / Nx
-    # print("dx = %.3f" %dx)
     # print("Nx = %.3f" %Nx)
     x = np.linspace(0, L, Nx)
 
@@ -67,7 +71,10 @@ def return_time(a, r, L, sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gam
     # Set initial condition u(x,0) = I(x)
     u_1, s = I(u_1, L, K, sigma, rho)
     u = u_1
-    umax = u[0]
+
+    #Checking for mixing regime
+    umax = u.max()
+    mixing = False
 
     values = K * (1 - np.array([1, .97, .9, .5, .2,  .025]) * s)
     values_copy = copy.copy(values)
@@ -76,6 +83,7 @@ def return_time(a, r, L, sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gam
         plot1 = pl.figure(1)
 
     while suma < .99 * K:
+    # while suma < (1 - .7*s) * K: 
         u[0:Nx] = u_1[0:Nx] + dt * r * u_1[0:Nx] * (1 - u_1[0:Nx] / K) * (u_1[0:Nx] / K) ** gamma\
         + F * (np.append(u_1[Nx-1], u_1[0:Nx-1]) - 2 * u_1[0:Nx] + np.append(u_1[1:Nx], u_1[0]))
 
@@ -86,7 +94,11 @@ def return_time(a, r, L, sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gam
 
         u_1, u = u, u_1
         t+=dt
-        # print(suma)
+
+        if compare:
+            if .99 * umax > u.max():
+                mixing = True
+                break 
 
         if show:
             for i in range(0, len(values)):
@@ -139,14 +151,24 @@ def return_time(a, r, L, sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gam
     #     pl.text(.6, s / .6 + .05, "s = %.2f" %s)
     #     pl.ylim(0, 1)
     #     pl.xlim(0, 1)
-
     #     if saveImage:
     #         pl.savefig("../images/perfiles/parametros_%i_%i" %(r, a), bbox_inches = "tight")
 
-    return r * (t-dt), s
+    return r * (t-dt), s, mixing
 
 
-# def compare(a, r, L, sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gamma = 3):
+def regimes(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gamma = 3):
 
-#     tau, _ = return_time(a, r, L, sigma, rho, I, F, K, gamma)
-#     tau0, _ = return_time(0, r, L, sigma, rho, I, F, K, gamma)
+    # 1 == IR, 2 == RR, 3 == MR
+    reg = 2
+    if a != 0:
+        tau, _, mix = return_time(a, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
+        if not mix:
+            tau0, _, _ = return_time(0, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
+            if abs(tau-tau0)< 30:
+                reg = 1 
+        else:
+            reg = 3 
+    else:
+        reg = 1 
+    return reg
