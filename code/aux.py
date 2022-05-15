@@ -23,6 +23,7 @@ def find(vec, elem):
                 elem[j] = 9999.99999
     return result
 
+# Fixes the number of divisions in the x axis according to sistem size, dispersal and growth rate 
 def fix_nx(L, a, r):
     Nx = 0
     if a != 0:
@@ -49,8 +50,9 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
 
     ## Vector espacial
     dx = L / Nx
-    # print("Nx = %.3f" %Nx)
     x = np.linspace(0, L, Nx)
+
+    # print("Nx = %.3f" %Nx)
 
     time_vec = np.array([])   
     integral = np.array([])
@@ -76,6 +78,7 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
     umax = u.max()
     mixing = False
 
+    # Values to choose when to show the plots according to recovered biomass
     values = K * (1 - np.array([1, .97, .9, .5, .2,  .025]) * s)
     values_copy = copy.copy(values)
 
@@ -83,7 +86,7 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         plot1 = pl.figure(1)
 
     while suma < .99 * K:
-    # while suma < (1 - .7*s) * K: 
+    # while suma < (1 - .7*s) * K: ## This can be useful when looking only to regime type (not as precise)
         u[0:Nx] = u_1[0:Nx] + dt * r * u_1[0:Nx] * (1 - u_1[0:Nx] / K) * (u_1[0:Nx] / K) ** gamma\
         + F * (np.append(u_1[Nx-1], u_1[0:Nx-1]) - 2 * u_1[0:Nx] + np.append(u_1[1:Nx], u_1[0]))
 
@@ -91,6 +94,8 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         suma = np.sum(u * dx) / L
         integral = np.append(integral, suma)
         time_vec = np.append(time_vec, t)
+        
+        # print(suma)
 
         u_1, u = u, u_1
         t+=dt
@@ -118,41 +123,41 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         if saveImage:
             pl.savefig("../images/perfiles/perfiles_%i_%i" %(r, a), bbox_inches = "tight")
 
-    #     # Plot para la integral de la biomasa en funcion de t
-    #     plot2 = pl.figure(2)
+        # Plot para la integral de la biomasa en funcion de t
+        plot2 = pl.figure(2)
 
-    #     time_vec_help = np.append(np.linspace(-.05 * time_vec.max(), 0, 100), time_vec)
-    #     integral_help = np.append(np.repeat(K, 100), integral)
+        time_vec_help = np.append(np.linspace(-.05 * time_vec.max(), 0, 100), time_vec)
+        integral_help = np.append(np.repeat(K, 100), integral)
 
-    #     pl.plot(time_vec_help, integral_help)    
-    #     pl.ylim(.95 - s, 1.02 * K)
-    #     pl.xlim(time_vec_help.min(), time_vec_help.max()+.003 * time_vec_help.max())
-    #     pl.ylabel("Biomasa / K")
-    #     pl.xlabel("Tiempo")
+        pl.plot(time_vec_help, integral_help)    
+        pl.ylim(.95 - s, 1.02 * K)
+        pl.xlim(time_vec_help.min(), time_vec_help.max()+.003 * time_vec_help.max())
+        pl.ylabel("Biomasa / K")
+        pl.xlabel("Tiempo")
 
-    #     markers = find(integral, values_copy)
-    #     c = 0
-    #     for i in markers:  
-    #         pl.plot(time_vec[i], integral[i], color = col_list[c][0].get_color(), marker = "o")    
-    #         c+=1
-    #     if saveImage:
-    #         pl.savefig("../images/perfiles/integral_%i_%i" %(r, a), bbox_inches = "tight")
+        markers = find(integral, values_copy)
+        c = 0
+        for i in markers:  
+            pl.plot(time_vec[i], integral[i], color = col_list[c][0].get_color(), marker = "o")    
+            c+=1
+        if saveImage:
+            pl.savefig("../images/perfiles/integral_%i_%i" %(r, a), bbox_inches = "tight")
 
 
-    #     ## Plot para el parameter space de las disturbances
-    #     plot3 = pl.figure(3)
-    #     x_vec = np.linspace(0.01, 1, 100)
-    #     y_vec = s / x_vec
-    #     pl.plot(x_vec, y_vec, "k--")
-    #     pl.plot(rho, sigma, "ro")
-    #     pl.xlabel("Intensidad de la perturbacion, " + r"$\rho$")
-    #     pl.ylabel("Extension de la perturbacion, "+ r"$\sigma$")
-    #     pl.title(r"$s = \sigma\rho$" + " = %.2f" %s)
-    #     pl.text(.6, s / .6 + .05, "s = %.2f" %s)
-    #     pl.ylim(0, 1)
-    #     pl.xlim(0, 1)
-    #     if saveImage:
-    #         pl.savefig("../images/perfiles/parametros_%i_%i" %(r, a), bbox_inches = "tight")
+        ## Plot para el parameter space de las disturbances
+        plot3 = pl.figure(3)
+        x_vec = np.linspace(0.01, 1, 100)
+        y_vec = s / x_vec
+        pl.plot(x_vec, y_vec, "k--")
+        pl.plot(rho, sigma, "ro")
+        pl.xlabel("Intensidad de la perturbacion, " + r"$\rho$")
+        pl.ylabel("Extension de la perturbacion, "+ r"$\sigma$")
+        pl.title(r"$s = \sigma\rho$" + " = %.2f" %s)
+        pl.text(.6, s / .6 + .05, "s = %.2f" %s)
+        pl.ylim(0, 1)
+        pl.xlim(0, 1)
+        if saveImage:
+            pl.savefig("../images/perfiles/parametros_%i_%i" %(r, a), bbox_inches = "tight")
 
     return r * (t-dt), s, mixing
 
@@ -165,7 +170,7 @@ def regimes(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K = 1
         tau, _, mix = return_time(a, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
         if not mix:
             tau0, _, _ = return_time(0, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
-            if abs(tau-tau0)< 30:
+            if abs(tau-tau0) < 30:
                 reg = 1 
         else:
             reg = 3 

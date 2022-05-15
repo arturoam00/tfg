@@ -9,7 +9,7 @@ a = float(sys.argv[2])
 L = int(sys.argv[3])
 
 try:
-	Nx = float(sys.argv[4])
+	Nx = int(sys.argv[4])
 except:
 	Nx = ""
 try:
