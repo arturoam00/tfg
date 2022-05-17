@@ -43,16 +43,14 @@ def fix_nx(L, a, r):
 
 def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gamma = 3, show = False, saveImage = False, compare = False):
     
-    if Nx == "":
+    if Nx  == "":
         Nx = fix_nx(L, a, r)
     
     col_list = []                                             
 
     ## Vector espacial
     dx = L / Nx
-    x = np.linspace(0, L, Nx)
-
-    # print("Nx = %.3f" %Nx)
+    x  = np.linspace(0, L, Nx)
 
     time_vec = np.array([])   
     integral = np.array([])
@@ -60,11 +58,11 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
     if a != 0:
         dt = F * dx ** 2 / a
     else: 
-        F = 0
+        F  = 0
         dt = .01
 
-    t = 0.0
-    eps = .01
+    t    = 0.0
+    eps  = .01
     suma = 0
 
     u_1 = np.empty(Nx, float)
@@ -72,14 +70,14 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
 
     # Set initial condition u(x,0) = I(x)
     u_1, s = I(u_1, L, K, sigma, rho)
-    u = u_1
+    u      = u_1
 
     #Checking for mixing regime
-    umax = u.max()
+    umax   = u.max()
     mixing = False
 
     # Values to choose when to show the plots according to recovered biomass
-    values = K * (1 - np.array([1, .97, .9, .5, .2,  .025]) * s)
+    values      = K * (1 - np.array([1, .97, .9, .5, .2,  .025]) * s)
     values_copy = copy.copy(values)
 
     if show:
@@ -88,17 +86,18 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
     while suma < .99 * K:
     # while suma < (1 - .7*s) * K: ## This can be useful when looking only to regime type (not as precise)
         u[0:Nx] = u_1[0:Nx] + dt * r * u_1[0:Nx] * (1 - u_1[0:Nx] / K) * (u_1[0:Nx] / K) ** gamma\
+        \
         + F * (np.append(u_1[Nx-1], u_1[0:Nx-1]) - 2 * u_1[0:Nx] + np.append(u_1[1:Nx], u_1[0]))
 
         # Integral of u(x, t) 
-        suma = np.sum(u * dx) / L
+        suma     = np.sum(u * dx) / L
         integral = np.append(integral, suma)
         time_vec = np.append(time_vec, t)
         
         # print(suma)
 
         u_1, u = u, u_1
-        t+=dt
+        t += dt
 
         if compare:
             if .9 * umax > u.max():
@@ -166,14 +165,16 @@ def regimes(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K = 1
 
     # 1 == IR, 2 == RR, 3 == MR
     reg = 2
+    t = -99
     if a != 0:
         tau, _, mix = return_time(a, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
         if not mix:
             tau0, _, _ = return_time(0, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
+            t = tau0
             if abs(tau-tau0) < 30:
                 reg = 1 
         else:
             reg = 3 
     else:
         reg = 1 
-    return reg
+    return reg, t
