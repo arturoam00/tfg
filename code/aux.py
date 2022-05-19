@@ -84,7 +84,6 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         plot1 = pl.figure(1)
 
     while suma < .99 * K:
-    # while suma < (1 - .7*s) * K: ## This can be useful when looking only to regime type (not as precise)
         u[0:Nx] = u_1[0:Nx] + dt * r * u_1[0:Nx] * (1 - u_1[0:Nx] / K) * (u_1[0:Nx] / K) ** gamma\
         \
         + F * (np.append(u_1[Nx-1], u_1[0:Nx-1]) - 2 * u_1[0:Nx] + np.append(u_1[1:Nx], u_1[0]))
@@ -164,7 +163,7 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
 def regimes(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gamma = 3):
 
     # 1 == IR, 2 == RR, 3 == MR
-    reg = 2
+    reg = 200
     t = -99
     if a != 0:
         tau, _, mix = return_time(a, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
@@ -172,9 +171,9 @@ def regimes(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K = 1
             tau0, _, _ = return_time(0, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
             t = tau0
             if abs(tau-tau0) < 30:
-                reg = 1 
+                reg = 100 
         else:
-            reg = 3 
+            reg = 300 
     else:
-        reg = 1 
+        reg = 100 
     return reg, t
