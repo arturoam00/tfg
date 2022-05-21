@@ -39,7 +39,7 @@ pl.colorbar(label = "Tiempo de recuperación, " + r"$\log_{10}\tau$", drawedges 
 
 pl.xlabel("Intensidad de la perturbación, " + r"$\rho$")
 pl.ylabel("Extension de la perturbación, " + r"$\sigma$")
-pl.title("Dispersión, d = %i" %a)
+pl.title("Dispersión, d = %.3f" %a)
 
 pl.savefig("../images/recovery/return_%i" %a, bbox_inches = "tight")
 
