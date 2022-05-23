@@ -5,6 +5,9 @@ import pylab as pl
 from aux import *
 
 r = 1 
+L = 100
+rho = .9
+gamma = 3
 
 try:
 	size = int(sys.argv[1])
@@ -19,7 +22,7 @@ dmin = dis_values_log.min()
 
 ############################# L ##############################################
 
-# tau0, _, _= return_time(0, 1, 500, Nx = "", sigma = .5, rho = .9, I = step_fun, F = .4, K = 1, gamma = 3)
+# tau0, _, _= return_time(0, 1, 500, Nx = "", sigma = .5, rho = rho, I = step_fun, F = .4, K = 1, gamma = gamma)
 
 # l_values_log = np.linspace(1, 4, size)
 # l_values = 10 ** l_values_log
@@ -28,7 +31,7 @@ dmin = dis_values_log.min()
 
 # for i in range(0, size):
 # 	for j in range(0, size):
-# 		regimes_array[i, j], _ = regimes(dis_values[j], r, l_values[i], Nx = "", sigma = .5, rho = .9, I = step_fun, F = .4, K = 1, gamma = 3)
+# 		regimes_array[i, j], _ = regimes(dis_values[j], r, l_values[i], Nx = "", sigma = .5, rho = rho, I = step_fun, F = .4, K = 1, gamma = gamma)
 
 # fig, ax = pl.subplots(1,1)
 
@@ -58,13 +61,12 @@ dmin = dis_values_log.min()
 
 g_values = np.linspace(0, 6, size)
 tau0 = np.empty(size)
-L = 100
 
 regimes_array = np.empty(shape = (size, size), dtype = float)
 
 for i in range(0, size):
 	for j in range(0, size):
-		regimes_array[i, j], t = regimes(dis_values[j], r, L = L, Nx = "", sigma = .5, rho = .9, I = step_fun, F = .4, K = 1, \
+		regimes_array[i, j], t = regimes(dis_values[j], r, L = L, Nx = "", sigma = .5, rho = rho, I = step_fun, F = .4, K = 1, \
 			gamma = g_values[i])
 		if t != -99:
 			tau0[i] = t
@@ -97,14 +99,13 @@ pl.show()
 
 # rho_values = np.linspace(.01, 1 , size)
 # tau0 = np.ones(size)
-# L = 100
 
 # regimes_array = np.empty(shape = (size, size), dtype = float)
 
 # for i in range(0, size):
 # 	for j in range(0, size):
 # 		regimes_array[i, j], t = regimes(dis_values[j], r, L = L, Nx = "", sigma = .5, rho = rho_values[i], I = step_fun, F = .4, K = 1\
-# 			, gamma = 3)
+# 			, gamma = gamma)
 # 		if t != -99 and t != 0:
 # 			tau0[i] = t
 
