@@ -26,7 +26,7 @@ except:
 
 
 
-tau, s, mix= return_time(a, r, L, Nx, sigma = sigma, rho = rho, I = step_fun, F = .4, K = 1, gamma = 6, show = True, saveImage = False, compare = False)
+tau, s, mix= return_time(a, r, L, Nx, sigma = sigma, rho = rho, I = step_fun, F = .4, K = 1, gamma = 3, show = True, saveImage = True, compare = False)
 print("Return time is: %.2f for a total perturbance of: %.2f" %(tau, s))
 pl.show()
 
