@@ -116,7 +116,7 @@ dmin = dis_values_log.min()
 
 ############################# RHO ##############################################
 
-rho_values = np.linspace(.01, .95, size)
+rho_values = np.linspace(.2, .95, size)
 tau0 = np.ones(size)
 
 regimes_array = np.empty(shape = (size, size), dtype = float)
@@ -140,7 +140,7 @@ img = ax.imshow(regimes_array, origin = "lower", extent=[dmin, dmax, rmin, rmax]
 	aspect = (dmax - dmin) / (rmax - rmin), cmap= "gnuplot", interpolation= "none")
 
 pl.xlabel("Dispersión, " + r"$\log_{10}$" + "d")
-pl.ylabel("Intensidad de la perturbacion, " + r"$\rho$")
+pl.ylabel("Intensidad de la perturbación, " + r"$\rho$")
 
 x1 = np.log10(L ** 2 * r / (2 * .37 * tau0) ** 2)
 x2 = np.log10(L ** 2 * r / 11 ** 2 * np.ones(size))
