@@ -116,7 +116,7 @@ dmin = dis_values_log.min()
 
 ############################# RHO ##############################################
 
-rho_values = np.linspace(.2, .95, size)
+rho_values = np.linspace(.2, .98, size)
 tau0 = np.ones(size)
 
 regimes_array = np.empty(shape = (size, size), dtype = float)
@@ -145,14 +145,20 @@ pl.ylabel("Intensidad de la perturbación, " + r"$\rho$")
 x1 = np.log10(L ** 2 * r / (2 * .37 * tau0) ** 2)
 x2 = np.log10(L ** 2 * r / 11 ** 2 * np.ones(size))
 
-line, = ax.plot(x1, rho_values, "-m", linewidth = 3)
-line2, = ax.plot(x2, rho_values, "-m", linewidth = 3)
+index = find(rho_values, [0.6226], (rmax - rmin) / size / 2)
+
+line, = ax.plot(x1[index:size], rho_values[index:size], "-m", linewidth = 3)
+line2, = ax.plot(x2, linspace(.6226, rmax, size), "-m", linewidth = 3)
 pl.ylim(rmin, rmax)
 pl.xlim(dmin, dmax)
+
+
 
 pl.savefig("../images/compara/comparaR_%i" %size, bbox_inches = "tight")
 
 pl.show(block = False)
+
+
 
 ax1 = pl.subplot(111)
 pl.plot(x1, rho_values, "-m", linewidth = 3)

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 
 ##Auxiliary functions
 
@@ -15,9 +14,8 @@ def step_fun(u, L, K, sigma, rho):
     return u, s
 
 ## Find nearest element index function which is equal to a certain value in a list within some threshold
-def find(vec, elem):  
+def find(vec, elem, eps = .01):  
     result = []
-    eps = .01
     for i in range(0, len(vec)):
         for j in range(0, len(elem)):
             if abs(vec[i] - elem[j])<eps:

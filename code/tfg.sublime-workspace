@@ -1,1 +1,781 @@
-{}
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"dis",
+				"dis_values"
+			],
+			[
+				"rh",
+				"rho_values"
+			],
+			[
+				"ta",
+				"tau_values"
+			],
+			[
+				"va",
+				"values_copy"
+			],
+			[
+				"SetLine",
+				"SetLineStyle"
+			],
+			[
+				"hdsm_",
+				"hdsm_chi2_vtxf"
+			],
+			[
+				"hdsp",
+				"hdsp_prob_vtxf"
+			],
+			[
+				"h",
+				"hds_mvtxf"
+			],
+			[
+				"hds",
+				"hds_m"
+			],
+			[
+				"GetE",
+				"GetEntry"
+			],
+			[
+				"dspl",
+				"dsplusfit"
+			],
+			[
+				"M_",
+				"M_d1"
+			],
+			[
+				"ch",
+				"chi2_vtx"
+			],
+			[
+				"chi_",
+				"chi2_vtx"
+			],
+			[
+				"npp",
+				"nppbar"
+			],
+			[
+				"hpb",
+				"hppbar_4cfit"
+			],
+			[
+				"hvf",
+				"hvfit_chi2_plus"
+			],
+			[
+				"chi2_",
+				"chi2_vtx"
+			],
+			[
+				"hvfit",
+				"hvfit_chi2_minus"
+			],
+			[
+				"chi",
+				"chi2_vtx"
+			],
+			[
+				"A",
+				"AddMassConstraint"
+			],
+			[
+				"GetXa",
+				"GetAxisX"
+			],
+			[
+				"SetL",
+				"SetLimits"
+			],
+			[
+				"Se",
+				"SetParameter"
+			],
+			[
+				"bkgS",
+				"bkgFncSum"
+			],
+			[
+				"S",
+				"Sgn_2"
+			],
+			[
+				"Sg",
+				"Sgn_1"
+			],
+			[
+				"Par",
+				"ParIndex"
+			],
+			[
+				"ba",
+				"background2"
+			],
+			[
+				"Dr",
+				"Draw"
+			],
+			[
+				"DR",
+				"DrawCopy"
+			],
+			[
+				"hdmass",
+				"hdmass_truth"
+			],
+			[
+				"hdmass_",
+				"hdmass_tight"
+			],
+			[
+				"R",
+				"RhoCandList"
+			],
+			[
+				"Rho",
+				"RhoCandidate"
+			],
+			[
+				"pi",
+				"piplus"
+			],
+			[
+				"PidAlgoIde",
+				"PidAlgoIdealCharged"
+			],
+			[
+				"hk",
+				"hke_dirc"
+			],
+			[
+				"hkmom_d",
+				"hkmom_dirc"
+			],
+			[
+				"hkmom_",
+				"hkmom_difftotrued"
+			],
+			[
+				"hpions_",
+				"hpions_trpid"
+			],
+			[
+				"hdsplus_t",
+				"hdsplusm_trpid"
+			],
+			[
+				"kmi",
+				"kminus"
+			],
+			[
+				"TH",
+				"TH1F"
+			],
+			[
+				"out",
+				"out_dummy"
+			],
+			[
+				"T",
+				"TFile"
+			],
+			[
+				"co",
+				"cout"
+			],
+			[
+				"histo",
+				"histo_pdg"
+			],
+			[
+				"counts",
+				"COUNTERS"
+			],
+			[
+				"his",
+				"histo_pdg"
+			],
+			[
+				"cou",
+				"count"
+			],
+			[
+				"iE",
+				"iEv"
+			],
+			[
+				"Pnd",
+				"PndMCTrack"
+			],
+			[
+				"Co",
+				"Colz"
+			],
+			[
+				"mcarr",
+				"mc_array"
+			],
+			[
+				"the",
+				"theta"
+			],
+			[
+				"Get",
+				"GetEntriesFast"
+			],
+			[
+				"mct",
+				"mctrack"
+			],
+			[
+				"mctra",
+				"mctrack"
+			],
+			[
+				"DrcB",
+				"DrcBarPoint"
+			],
+			[
+				"TF",
+				"TH1F"
+			],
+			[
+				"a",
+				"main"
+			],
+			[
+				"pref",
+				"prefix"
+			],
+			[
+				"do",
+				"double"
+			],
+			[
+				"9",
+				"95"
+			],
+			[
+				"inc",
+				"inc"
+			],
+			[
+				"GetM",
+				"GetMomentum"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "tfg.sublime-project",
+			"settings":
+			{
+				"buffer_size": 48,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"packa",
+				"Package Control: Disable Package"
+			],
+			[
+				"ind",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"ide",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"id",
+				"Indentation: Detect"
+			],
+			[
+				"idd",
+				"Indentation: Detect"
+			],
+			[
+				"comm",
+				"Toggle Comment"
+			],
+			[
+				"rei",
+				"Indentation: Reindent Lines"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 166.0,
+		"history":
+		[
+			"2+2",
+			"e"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/u/aabrilma/Documents/tfg/code/compara.py",
+		"/u/aabrilma/Documents/tfg/code/aux.py",
+		"/u/aabrilma/Documents/tfg/code/tfg.sublime-workspace",
+		"/u/aabrilma/Documents/tfg/images/compara/comparaR_100.png",
+		"/u/aabrilma/lustre/code/aux.py",
+		"/u/aabrilma/lustre/code/aux.pyc",
+		"/u/aabrilma/lustre/first.sh",
+		"/u/aabrilma/.bashrc",
+		"/u/aabrilma/.bashrx",
+		"/u/aabrilma/lustre/prueba.sh",
+		"/u/aabrilma/lustre/code/perfiles.py",
+		"/u/aabrilma/lustre/example.C",
+		"/u/aabrilma/lustre/prueba.py",
+		"/u/aabrilma/pandarho/march22/macros/mom_theta.C",
+		"/u/aabrilma/pandarho/pandarho.sublime-pº",
+		"/u/aabrilma/Documents/tfg/code/example.py",
+		"/u/aabrilma/Documents/tfg/code/aux.pyc",
+		"/u/aabrilma/ssh-agent-session",
+		"/u/aabrilma/Documents/tfg/code/perfiles.py",
+		"/u/aabrilma/Documents/tfg/code/copy_perfiles.py",
+		"/u/aabrilma/lustre/example.sh",
+		"/u/aabrilma/lustre/example.",
+		"/u/aabrilma/.ssh/config",
+		"/u/aabrilma/Documents/tfg/code/borrar.py",
+		"/u/aabrilma/Documents/tfg/code/copy_compara.py",
+		"/u/aabrilma/Documents/tfg/code/rettime.py",
+		"/u/aabrilma/.ssh/agent-session",
+		"/home/arturo/Documents/tfg/images/perfiles/integral_4_0.png",
+		"/home/arturo/Documents/tfg/code/rettime.py",
+		"/home/arturo/Documents/tfg/code/perfiles.py",
+		"/home/arturo/Documents/tfg/code/compara.py",
+		"/home/arturo/Documents/tfg/code/aux.py",
+		"/home/arturo/Documents/tfg/code/test.py",
+		"/home/arturo/Documents/tfg/code/arrays.py",
+		"/home/arturo/Documents/tfg/code/rann.py",
+		"/home/arturo/Documents/tfg/code/diffusion.py",
+		"/u/aabrilma/Documents/tfg/code/as.py",
+		"/u/aabrilma/pandarho/may22/macros/my_ana_tree.C",
+		"/u/aabrilma/pandarho/may22/macros/my_ana_read.C",
+		"/u/aabrilma/pandarho/apr22/macros/my_ana_pid.C",
+		"/u/aabrilma/pandarho/may22/macros/fit_histos.C",
+		"/u/aabrilma/pandarho/march22/macros/mom.C",
+		"/u/aabrilma/Documents/tfg/code/prueba.py",
+		"/u/aabrilma/pandarho/march22/macros/mom",
+		"/u/aabrilma/pandarho/apr22/macros/ana_read.sh",
+		"/u/aabrilma/pandarho/may22/images/4gev/truth.png",
+		"/u/aabrilma/pandarho/may22/macros/ana_read.sh",
+		"/u/aabrilma/pandarho/apr22/macros/fit_histos.C",
+		"/u/aabrilma/Documents/tfg/prueba.py",
+		"/u/aabrilma/Documents/tfg/diffusion.py",
+		"/u/aabrilma/Documents/tfg/new2.py",
+		"/u/aabrilma/Documents/tfg/new.C",
+		"/u/aabrilma/Documents/new.py",
+		"/u/aabrilma/pandarho/may22/macros/my_ana_pid.C",
+		"/u/aabrilma/pandarho/tutorial/tut_runall.sh",
+		"/u/aabrilma/pandarho/apr22/macros/my_ana_read.C",
+		"/u/aabrilma/pandarho/may22/macros/mycand.h",
+		"/u/aabrilma/pandarho/tutorial/tut_ana_mcmatch.C",
+		"/u/aabrilma/pandarho/tutorial/tut_sim.C",
+		"/u/aabrilma/pandarho/tutorial/tut_aod.C",
+		"/u/aabrilma/pandarho/tutorial/tut_ana_fit.C",
+		"/u/aabrilma/pandarho/march22/macros/draw_sim.C",
+		"/u/aabrilma/pandarho/march22/macros/pk_count.C",
+		"/u/aabrilma/pandarho/march22/macros/first_macro.C",
+		"/u/aabrilma/pandarho/apr22/macros/my_ana_tree.C",
+		"/u/aabrilma/pandarho/apr22/macros/my_ana_vfit.C",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoFitter/RhoKinVtxFitter.cxx",
+		"/u/aabrilma/pandarho/apr22/macros/mycand.h",
+		"/u/aabrilma/pandarho/may22/macros/ana_tree.C",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoSelector/RhoMassParticleSelector.h",
+		"/u/aabrilma/pandarho/apr22/macros/auxtut.C",
+		"/u/aabrilma/dirc/pandaroot/analysis/AnalysisTools/PndListProvider.cxx",
+		"/u/aabrilma/dirc/pandaroot/analysis/AnalysisTools/PndAnalysis.cxx",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoSelector/RhoMassParticleSelector.cxx",
+		"/u/aabrilma/pandarho/may22/macros/tree0.C",
+		"/u/aabrilma/dirc/pandaroot/genfit2/core/include/Track.h",
+		"/u/aabrilma/dirc/pandaroot/analysis/AnalysisTools/PndAnaContFact.h",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoBase/RhoCandidate.cxx",
+		"/u/aabrilma/pandarho/tutorial/tut_ana_ntp.C",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoHistogram/RhoTuple.h",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoBase/RhoCandidate.h",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoHistogram/RhoTuple.cxx",
+		"/u/aabrilma/dirc/pandaroot/analysis/AnalysisTools/PndSimpleNtuple.cxx",
+		"/u/aabrilma/.root_hist",
+		"/u/aabrilma/dirc/pandaroot/analysis/AnalysisTools/PndSimpleNtuple.h",
+		"/u/aabrilma/pandarho/apr22/macros/histos_ana.C",
+		"/u/aabrilma/pandarho/apr22/macros/fi",
+		"/u/aabrilma/pandarho/march22/images/kaons_cuts.png",
+		"/u/aabrilma/pandarho/march22/images/kaons_sim.png",
+		"/u/aabrilma/pandarho/march22/images/mycanvas.png",
+		"/u/aabrilma/pandarho/march22/images/Canvas2.png",
+		"/u/aabrilma/dirc/pandaroot/tutorials/rho/tut_ana.C",
+		"/u/aabrilma/dirc/pandaroot/tutorials/thailand2017/tut_ana.C",
+		"/u/aabrilma/dirc/pandaroot/tutorials/thailand2017/tut_sim.C",
+		"/u/aabrilma/dirc/pandaroot/tutorials/rho/tut_sim.C",
+		"/u/aabrilma/pandarho/core",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoFitter/RhoKinFitter.cxx",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoFitter/RhoKinFitter.h",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoFitter/RhoKinVtxFitter.h",
+		"/u/aabrilma/pandarho/my_ana.C",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoBase/RhoFactory.cxx",
+		"/u/aabrilma/dirc/pandaroot/analysis/rho/RhoBase/RhoFactory.h",
+		"/u/aabrilma/dirc/pandaroot/pnddata/PndStack.cxx",
+		"/u/aabrilma/dirc/pandaroot/tracking/ftscatracking/code/KFParticle/KFPTopoReconstructor.h",
+		"/u/aabrilma/pandarho/tutorial/pp_2Ds_2Kpi.dec",
+		"/u/aabrilma/pandarho/fit_histos.C",
+		"/u/aabrilma/pandarho/histos_ana.C",
+		"/u/aabrilma/dirc/pandaroot/macro/detectors/drc/sim.C",
+		"/u/aabrilma/pandarho/copy_fit_histos.C",
+		"/u/aabrilma/pandarho/tutorial/eventDisplay.C",
+		"/u/aabrilma/pandarho/FittingDemo.C",
+		"/u/aabrilma/pandarho/copy_fit.C",
+		"/u/aabrilma/dirc/pandaroot/tutorials/rho/pp_2Ds_2Kpi.dec",
+		"/u/aabrilma/dirc/pandaroot/tutorials/rho/pp_jpsi2pi_jpsi_mumu.dec",
+		"/u/aabrilma/pandarho/misdatos_1/pp_2Ds_2Kpi.dec",
+		"/u/aabrilma/pandarho/tutorial/noPhotos.dec",
+		"/u/aabrilma/pandarho/misdatos_1/mom_theta.C",
+		"/u/aabrilma/pandarho/borrar.C",
+		"/u/aabrilma/pandarho/tutorial/tut_ana.C",
+		"/u/aabrilma/dirc/pandaroot/tutorials/rho/auxtut.C",
+		"/u/aabrilma/dirc/pandaroot/detectors/fts/PndFtsDataAccessor.cxx",
+		"/u/aabrilma/pandarho/kaons_sim.png",
+		"/u/aabrilma/pandarho/kaons_true.png",
+		"/u/aabrilma/pandarho/kaons_tight.png",
+		"/u/aabrilma/pandarho/kaons_loose.png",
+		"/u/aabrilma/pandarho/kaons.png",
+		"/u/aabrilma/pandarho/misdatos_1/kaons.png",
+		"/u/aabrilma/pandarho/true_kaons.png"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 506.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			" ",
+			"return_ti",
+			"/cvmfs/vae.gsi.de/debian10/containers/debian10-user_container_20220519T1203.sif",
+			"line, = ax",
+			"g_values",
+			"l_values_log",
+			"l",
+			"u",
+			"solver_FE_simple",
+			"tot",
+			"lf",
+			"inchain2",
+			"hpi_bkg",
+			"hpi_tot",
+			"hk",
+			"prefix",
+			"//",
+			"hdsmass",
+			"hdsmass_",
+			"pid_histos/",
+			"hdsmass"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"N",
+			"hk_bkg3",
+			"hk_bkg2",
+			"prefix2",
+			"hds"
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "tfg.sublime-project",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 48,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JSON/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 162.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "tfg.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"trac",
+				"pandaroot/genfit2/core/include/Track.h"
+			],
+			[
+				"kaon",
+				"~/pandarho/true_kaons.png"
+			],
+			[
+				"true",
+				"~/pandarho/true_kaons.png"
+			],
+			[
+				"RhoMass",
+				"dirc/pandaroot/analysis/rho/RhoSelector/RhoMassParticleSelector.cxx"
+			],
+			[
+				"RhoParticleSelectorBase",
+				"dirc/pandaroot/analysis/rho/RhoBase/RhoParticleSelectorBase.h"
+			],
+			[
+				"RhoMassParticleSelector",
+				"dirc/pandaroot/analysis/rho/RhoSelector/RhoMassParticleSelector.h"
+			],
+			[
+				"RhoCandList",
+				"dirc/pandaroot/analysis/rho/RhoBase/RhoCandList.h"
+			],
+			[
+				"PndAn",
+				"dirc/pandaroot/analysis/AnalysisTools/PndAnalysis.h"
+			],
+			[
+				"PndAna",
+				"dirc/pandaroot/analysis/AnalysisTools/PndAnalysis.h"
+			],
+			[
+				"RhoCa",
+				"dirc/pandaroot/analysis/rho/RhoBase/RhoCandList.h"
+			],
+			[
+				"RhoCandL",
+				"dirc/pandaroot/analysis/rho/RhoBase/RhoCandList.h"
+			],
+			[
+				"PndA",
+				"dirc/pandaroot/analysis/AnalysisTools/PndAnalysis.h"
+			],
+			[
+				"TH1.h",
+				"cvmfs/fairsoft.gsi.de/macos-10.15/view/jun19/include/TH1.h"
+			],
+			[
+				"TH1F",
+				"cvmfs/fairsoft.gsi.de/macos-10.15/view/jun19/include/TH1F.h"
+			],
+			[
+				"PndMCT",
+				"pandaroot/pnddata/PndMCTrack.h"
+			],
+			[
+				"TClonesArray",
+				"cvmfs/fairsoft.gsi.de/macos-10.15/view/jun19/include/TClonesArray.h"
+			],
+			[
+				"TLorentzVector.cxx",
+				"pandaroot/analysis/rho/RhoMath/RhoLorentzVectorErr.cxx"
+			],
+			[
+				"TLorent",
+				"cvmfs/fairsoft.gsi.de/macos-10.15/view/jun19/include/TLorentzVector.h"
+			],
+			[
+				"TLorentzvec",
+				"cvmfs/fairsoft.gsi.de/macos-10.15/view/jun19/include/TLorentzVector.h"
+			],
+			[
+				"TVector3",
+				"cvmfs/fairsoft.gsi.de/macos-10.15/view/jun19/include/TVector3.h"
+			],
+			[
+				"TLorentzVector",
+				"cvmfs/fairsoft.gsi.de/macos-10.15/view/jun19/include/TLorentzVector.h"
+			],
+			[
+				"TVector3.",
+				"cvmfs/fairsoft.gsi.de/macos-10.15/view/jun19/include/TVector3.h"
+			],
+			[
+				"MCTrack.",
+				"pandaroot/pnddata/PndMCTrack.h"
+			],
+			[
+				"TClonesArra",
+				"cvmfs/fairsoft.gsi.de/macos-10.15/view/jun19/include/TClonesArray.h"
+			],
+			[
+				"PndDrcBarPo",
+				"pandaroot/pnddata/DrcData/PndDrcBarPoint.h"
+			],
+			[
+				"FairMCPoint",
+				"cvmfs/fairsoft.gsi.de/macos-10.15/view/jun19/include/FairMCPoint.h"
+			],
+			[
+				"PndDrcPoint.h",
+				"pandaroot/pnddata/DrcData/PndDrcPDPoint.h"
+			],
+			[
+				"FairMCPoint.h",
+				"tracking/PndFtsHoughTracking/PndFtsHitProducerMcPointCoordinates.h"
+			],
+			[
+				"DrcBarpoint.h",
+				"pnddata/DrcData/PndDrcBarPoint.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 309.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"E"
+			]
+		],
+		"width": 579.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 206.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
