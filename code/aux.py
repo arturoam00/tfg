@@ -100,8 +100,13 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         u_1, u = u, u_1
         t += dt
 
+        ######
+        # if u.max() < umax:
+        #     umax = u.max()
+        ######
+
         if compare:
-            if .99 * umax > u.max():
+            if 0.9539393564462992 * umax > u.max():
                 mixing = True
                 break 
 
@@ -110,6 +115,9 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
                 if abs(suma - values[i])<eps:
                     col_list.append(pl.plot(x, u, label = "t%i" %i))
                     values[i] = 9999.9999
+
+    # print(umax)
+
 
 
     if show:
