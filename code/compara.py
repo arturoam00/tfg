@@ -116,7 +116,7 @@ dmin = dis_values_log.min()
 
 ############################# RHO ##############################################
 
-rho_values = np.linspace(.2, .98, size)
+rho_values = np.linspace(.2, .95, size)
 tau0 = np.ones(size)
 
 regimes_array = np.empty(shape = (size, size), dtype = float)
@@ -147,8 +147,8 @@ x2 = np.log10(L ** 2 * r / 11 ** 2 * np.ones(size))
 
 index = find(rho_values, [0.6226], (rmax - rmin) / size / 2)
 
-line, = ax.plot(x1[index:size], rho_values[index:size], "-m", linewidth = 3)
-line2, = ax.plot(x2, linspace(.6226, rmax, size), "-m", linewidth = 3)
+line, = ax.plot(x1[index[0]:size], rho_values[index[0]:size], "-m", linewidth = 3)
+line2, = ax.plot(x2, np.linspace(.6226, rmax, size), "-m", linewidth = 3)
 pl.ylim(rmin, rmax)
 pl.xlim(dmin, dmax)
 
