@@ -155,7 +155,7 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         x_vec = np.linspace(0.01, 1, 100)
         y_vec = s / x_vec
         pl.plot(x_vec, y_vec, "k--")
-        pl.plot(rho, sigma, "ro")
+        # pl.plot(rho, sigma, "ro")
         pl.xlabel("Intensidad de la perturbacion, " + r"$\rho$")
         pl.ylabel("Extension de la perturbacion, "+ r"$\sigma$")
         pl.title(r"$s = \sigma\rho$" + " = %.2f" %s)
