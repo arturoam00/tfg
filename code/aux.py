@@ -99,12 +99,12 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         t += dt
 
         ######
-        if u.max() < umax:
-            umax = u.max()
+        # if u.max() < umax:
+        #     umax = u.max()
         ######
 
         if compare:
-            if 0.9539393564462992 * umax > u.max():
+            if 0.9 * umax > u.max(): ## Para L he usado 0.9 (creo)
                 mixing = True
                 break 
 
@@ -114,7 +114,7 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
                     col_list.append(pl.plot(x, u, label = "t%i" %i))
                     values[i] = 9999.9999
 
-    print(umax)
+    # print(umax)
 
 
 
@@ -182,7 +182,7 @@ def regimes(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K = 1
         if not mix:
             tau0, _, _ = return_time(0, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
             t = tau0
-            if abs(tau-tau0) < 30:
+            if abs(tau-tau0) < 8: ##Para L he usado 30 !
                 reg = 100 
         else:
             reg = 300 

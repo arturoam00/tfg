@@ -23,45 +23,48 @@ dmin = dis_values_log.min()
 
 ############################# L ##############################################
 
-# tau0, _, _= return_time(0, 1, 500, Nx = "", sigma = .5, rho = rho, I = step_fun, F = .4, K = 1, gamma = gamma)
+tau0, _, _= return_time(0, 1, 500, Nx = "", sigma = .5, rho = rho, I = step_fun, F = .4, K = 1, gamma = gamma)
 
-# l_values_log = np.linspace(1, 4, size)
-# l_values = 10 ** l_values_log
+l_values_log = np.linspace(1, 4, size)
+l_values = 10 ** l_values_log
 
-# regimes_array = np.empty(shape = (size, size), dtype = float)
+regimes_array = np.empty(shape = (size, size), dtype = float)
 
-# for i in range(0, size):
-# 	for j in range(0, size):
-# 		regimes_array[i, j], _ = regimes(dis_values[j], r, l_values[i], Nx = "", sigma = .5, rho = rho, I = step_fun, F = .4, K = 1, gamma = gamma)
+for i in range(0, size):
+	for j in range(0, size):
+		regimes_array[i, j], _ = regimes(dis_values[j], r, l_values[i], Nx = "", sigma = .5, rho = rho, I = step_fun, F = .4, K = 1, gamma = gamma)
 
-# fig, ax = pl.subplots(1,1)
+fig, ax = pl.subplots(1,1)
 
-# lmax = l_values_log.max()
-# lmin = l_values_log.min()
+lmax = l_values_log.max()
+lmin = l_values_log.min()
 
-# img = ax.imshow(regimes_array, origin = "lower", extent=[dmin, dmax, lmin, lmax], \
-# 	aspect = (dmax - dmin) / (lmax - lmin), cmap= "gnuplot", interpolation= "none")
+img = ax.imshow(regimes_array, origin = "lower", extent=[dmin, dmax, lmin, lmax], \
+	aspect = (dmax - dmin) / (lmax - lmin), cmap= "gnuplot", interpolation= "none")
 
-# pl.xlabel("Dispersión, " + r"$\log_{10}$" + "d")
-# pl.ylabel("Tamaño del sistema, " + r"$\log_{10}$" + "L")
+pl.xlabel("Dispersión, " + r"$\log_{10}$" + "d")
+pl.ylabel("Tamaño del sistema, " + r"$\log_{10}$" + "L")
 
-# y1 = 2 * .37 * tau0 * np.sqrt(1 / r) * np.sqrt(dis_values)
-# y2 = 11 * np.sqrt(1 / r) * np.sqrt(dis_values)
+y1 = 2 * .37 * tau0 * np.sqrt(1 / r) * np.sqrt(dis_values)
+y2 = 11 * np.sqrt(1 / r) * np.sqrt(dis_values)
 
-# line, = ax.plot(dis_values_log, np.log10(y1), "-m", linewidth = 3)
-# line2, = ax.plot(dis_values_log, np.log10(y2), "-m", linewidth = 3)
-# pl.ylim(lmin, lmax)
-# pl.xlim(dmin, dmax)
+line, = ax.plot(dis_values_log, np.log10(y1), "-m", linewidth = 3)
+line2, = ax.plot(dis_values_log, np.log10(y2), "-m", linewidth = 3)
+pl.ylim(lmin, lmax)
+pl.xlim(dmin, dmax)
 
-# pl.savefig("../images/compara/comparaL_%i" %size, bbox_inches = "tight")
+pl.savefig("../images/compara/comparaL_%i" %size, bbox_inches = "tight")
 
-# pl.show(block = False)
+pl.show(block = False)
 
-# ax1 = pl.subplot(111)
-# pl.plot(dis_values_log, np.log10(y1), "-m", linewidth = 3)
-# pl.plot(dis_values_log, np.log10(y2), "-m", linewidth = 3)
-# pl.ylim(lmin, lmax)
-# pl.xlim(dmin, dmax)
+ax1 = pl.subplot(111)
+pl.plot(dis_values_log, np.log10(y1), "-m", linewidth = 3)
+pl.plot(dis_values_log, np.log10(y2), "-m", linewidth = 3)
+pl.ylim(lmin, lmax)
+pl.xlim(dmin, dmax)
+
+with open('l_plot.pkl','wb') as fid:
+    pickle.dump(ax1, fid)
 
 ############################# GAMMA ##############################################
 
@@ -113,48 +116,48 @@ dmin = dis_values_log.min()
 
 ############################# RHO ##############################################
 
-rho_values = np.linspace(.2, .95, size)
-tau0 = np.ones(size)
+# rho_values = np.linspace(.2, .95, size)
+# tau0 = np.ones(size)
 
-regimes_array = np.empty(shape = (size, size), dtype = float)
+# regimes_array = np.empty(shape = (size, size), dtype = float)
 
-for i in range(0, size):
-	for j in range(0, size):
-		regimes_array[i, j], t = regimes(dis_values[j], r, L = L, Nx = "", sigma = .5, rho = rho_values[i], I = step_fun, F = .4, K = 1\
-			, gamma = gamma)
-		if t != -99 and t != 0:
-			tau0[i] = t
+# for i in range(0, size):
+# 	for j in range(0, size):
+# 		regimes_array[i, j], t = regimes(dis_values[j], r, L = L, Nx = "", sigma = .5, rho = rho_values[i], I = step_fun, F = .4, K = 1\
+# 			, gamma = gamma)
+# 		if t != -99 and t != 0:
+# 			tau0[i] = t
 
-fig, ax = pl.subplots(1,1)
+# fig, ax = pl.subplots(1,1)
 
-rmax = rho_values.max()
-rmin = rho_values.min()
+# rmax = rho_values.max()
+# rmin = rho_values.min()
 
-img = ax.imshow(regimes_array, origin = "lower", extent=[dmin, dmax, rmin, rmax], \
-	aspect = (dmax - dmin) / (rmax - rmin), cmap= "gnuplot", interpolation= "none")
+# img = ax.imshow(regimes_array, origin = "lower", extent=[dmin, dmax, rmin, rmax], \
+# 	aspect = (dmax - dmin) / (rmax - rmin), cmap= "gnuplot", interpolation= "none")
 
-pl.xlabel("Dispersión, " + r"$\log_{10}$" + "d")
-pl.ylabel("Intensidad de la perturbación, " + r"$\rho$")
+# pl.xlabel("Dispersión, " + r"$\log_{10}$" + "d")
+# pl.ylabel("Intensidad de la perturbación, " + r"$\rho$")
 
-x1 = np.log10(L ** 2 * r / (2 * .37 * tau0) ** 2)
-x2 = np.log10(L ** 2 * r / 11 ** 2 * np.ones(size))
+# x1 = np.log10(L ** 2 * r / (2 * .37 * tau0) ** 2)
+# x2 = np.log10(L ** 2 * r / 11 ** 2 * np.ones(size))
 
-index = find(rho_values, [0.6226], (rmax - rmin) / size / 2)
+# index = find(rho_values, [0.6226], (rmax - rmin) / size / 2)
 
-line, = ax.plot(x1[index[0]:size], rho_values[index[0]:size], "-m", linewidth = 3)
-line2, = ax.plot(x2, np.linspace(.6226, rmax, size), "-m", linewidth = 3)
-pl.ylim(rmin, rmax)
-pl.xlim(dmin, dmax)
+# line, = ax.plot(x1[index[0]:size], rho_values[index[0]:size], "-m", linewidth = 3)
+# line2, = ax.plot(x2, np.linspace(.6226, rmax, size), "-m", linewidth = 3)
+# pl.ylim(rmin, rmax)
+# pl.xlim(dmin, dmax)
 
-pl.savefig("../images/compara/comparaR_%i" %size, bbox_inches = "tight")
+# pl.savefig("../images/compara/comparaR_%i" %size, bbox_inches = "tight")
 
-pl.show(block = False)
+# pl.show(block = False)
 
-ax1 = pl.subplot(111)
-pl.plot(x1, rho_values, "-m", linewidth = 3)
-pl.plot(x2, rho_values, "-m", linewidth = 3)
-pl.ylim(rmin, rmax)
-pl.xlim(dmin, dmax)
+# ax1 = pl.subplot(111)
+# pl.plot(x1, rho_values, "-m", linewidth = 3)
+# pl.plot(x2, rho_values, "-m", linewidth = 3)
+# pl.ylim(rmin, rmax)
+# pl.xlim(dmin, dmax)
 
-with open('prueba_plot.pkl','wb') as fid:
-    pickle.dump(ax1, fid)
+# with open('rho_plot.pkl','wb') as fid:
+#     pickle.dump(ax1, fid)

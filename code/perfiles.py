@@ -1,6 +1,7 @@
 ##############################################
 #######Arturo Abril Martínez, June 2022#######
 ##Trabajo fin de grado Facultad C.C Físicas###
+### Macro para las figuras 1 y 2 del texto ###
 ##############################################
 
 import numpy as np
@@ -28,12 +29,6 @@ except:
 
 
 
-tau, s, mix= return_time(a, r, L, Nx, sigma = sigma, rho = rho, I = step_fun, F = .4, K = 1, gamma = 3, show = True, saveImage = True, compare = False)
+tau, s, mix= return_time(a, r, L, Nx, sigma = sigma, rho = rho, I = step_fun, F = .4, K = 1, gamma = 3, show = False, saveImage = False, compare = False)
 print("Return time is: %.2f for a total perturbance of: %.2f" %(tau, s))
 pl.show()
-
-
-
-
-
-
