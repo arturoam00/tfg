@@ -275,14 +275,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "tfg.sublime-project",
-			"settings":
-			{
-				"buffer_size": 48,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -346,13 +338,21 @@
 	},
 	"expanded_folders":
 	[
+		"/u/aabrilma/Documents/tfg/images",
+		"/u/aabrilma/Documents/tfg/images/compara",
+		"/u/aabrilma/Documents/tfg/images/perfiles",
+		"/u/aabrilma/Documents/tfg/images/recovery"
 	],
 	"file_history":
 	[
-		"/u/aabrilma/Documents/tfg/code/compara.py",
+		"/u/aabrilma/Documents/tfg/code/tfg.sublime-project",
 		"/u/aabrilma/Documents/tfg/code/aux.py",
-		"/u/aabrilma/Documents/tfg/code/tfg.sublime-workspace",
+		"/u/aabrilma/Documents/tfg/code/compara.py",
+		"/u/aabrilma/Documents/tfg/code/perfiles.py",
+		"/u/aabrilma/Documents/tfg/code/borrar.py",
 		"/u/aabrilma/Documents/tfg/images/compara/comparaR_100.png",
+		"/u/aabrilma/Documents/tfg/code/aux.pyc",
+		"/u/aabrilma/Documents/tfg/code/tfg.sublime-workspace",
 		"/u/aabrilma/lustre/code/aux.py",
 		"/u/aabrilma/lustre/code/aux.pyc",
 		"/u/aabrilma/lustre/first.sh",
@@ -365,14 +365,11 @@
 		"/u/aabrilma/pandarho/march22/macros/mom_theta.C",
 		"/u/aabrilma/pandarho/pandarho.sublime-pº",
 		"/u/aabrilma/Documents/tfg/code/example.py",
-		"/u/aabrilma/Documents/tfg/code/aux.pyc",
 		"/u/aabrilma/ssh-agent-session",
-		"/u/aabrilma/Documents/tfg/code/perfiles.py",
 		"/u/aabrilma/Documents/tfg/code/copy_perfiles.py",
 		"/u/aabrilma/lustre/example.sh",
 		"/u/aabrilma/lustre/example.",
 		"/u/aabrilma/.ssh/config",
-		"/u/aabrilma/Documents/tfg/code/borrar.py",
 		"/u/aabrilma/Documents/tfg/code/copy_compara.py",
 		"/u/aabrilma/Documents/tfg/code/rettime.py",
 		"/u/aabrilma/.ssh/agent-session",
@@ -475,12 +472,11 @@
 		"/u/aabrilma/pandarho/kaons_tight.png",
 		"/u/aabrilma/pandarho/kaons_loose.png",
 		"/u/aabrilma/pandarho/kaons.png",
-		"/u/aabrilma/pandarho/misdatos_1/kaons.png",
-		"/u/aabrilma/pandarho/true_kaons.png"
+		"/u/aabrilma/pandarho/misdatos_1/kaons.png"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -494,6 +490,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"size",
+			"find",
 			" ",
 			"return_ti",
 			"/cvmfs/vae.gsi.de/debian10/containers/debian10-user_container_20220519T1203.sif",
@@ -541,38 +539,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "tfg.sublime-project",
-					"selected": true,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 48,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JSON/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"stack_multiselect": false,
-					"type": "text"
-				}
 			]
 		}
 	],

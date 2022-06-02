@@ -99,8 +99,8 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         t += dt
 
         ######
-        # if u.max() < umax:
-        #     umax = u.max()
+        if u.max() < umax:
+            umax = u.max()
         ######
 
         if compare:
@@ -114,7 +114,7 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
                     col_list.append(pl.plot(x, u, label = "t%i" %i))
                     values[i] = 9999.9999
 
-    # print(umax)
+    print(umax)
 
 
 
