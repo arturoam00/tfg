@@ -132,13 +132,14 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         # Plot para la integral de la biomasa en funcion de t
         plot2 = pl.figure(2)
 
+        time_vec *= r ### fix the temporal scale to the r temporal scale 
         time_vec_help = np.append(np.linspace(-.05 * time_vec.max(), 0, 100), time_vec)
         integral_help = np.append(np.repeat(K, 100), integral)
 
         pl.plot(time_vec_help, integral_help)    
         pl.ylim(.95 - s, 1.02 * K)
         pl.xlim(time_vec_help.min(), time_vec_help.max()+.003 * time_vec_help.max())
-        pl.ylabel("Biomasa / K")
+        pl.ylabel("Biomasa total")
         pl.xlabel("Tiempo")
 
         markers = find(integral, values_copy)
@@ -155,7 +156,10 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
         x_vec = np.linspace(0.01, 1, 100)
         y_vec = s / x_vec
         pl.plot(x_vec, y_vec, "k--")
-        # pl.plot(rho, sigma, "ro")
+        pl.scatter(rho, sigma, s = 100, edgecolors = "red", facecolors = "none", linewidths = 2, clip_on = False)
+        # pl.scatter(sigma, rho, s = 100, edgecolors = "red", facecolors = "none", linewidths = 2, clip_on = False)
+        # pl.text(.35, .95, "(d)")
+        # pl.text(.95, .35, "(b)")
         pl.xlabel("Intensidad de la perturbacion, " + r"$\rho$")
         pl.ylabel("Extension de la perturbacion, "+ r"$\sigma$")
         pl.title(r"$s = \sigma\rho$" + " = %.2f" %s)

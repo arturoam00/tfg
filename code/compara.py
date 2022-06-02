@@ -63,9 +63,6 @@ dmin = dis_values_log.min()
 # pl.ylim(lmin, lmax)
 # pl.xlim(dmin, dmax)
 
-# with open('l_plot.pkl','wb') as fid:
-#     pickle.dump(ax1, fid)
-
 ############################# GAMMA ##############################################
 
 # g_values = np.linspace(0, 6, size)
@@ -128,9 +125,6 @@ for i in range(0, size):
 		if t != -99 and t != 0:
 			tau0[i] = t
 
-
-
-
 fig, ax = pl.subplots(1,1)
 
 rmax = rho_values.max()
@@ -152,13 +146,9 @@ line2, = ax.plot(x2, np.linspace(.6226, rmax, size), "-m", linewidth = 3)
 pl.ylim(rmin, rmax)
 pl.xlim(dmin, dmax)
 
-
-
 pl.savefig("../images/compara/comparaR_%i" %size, bbox_inches = "tight")
 
 pl.show(block = False)
-
-
 
 ax1 = pl.subplot(111)
 pl.plot(x1, rho_values, "-m", linewidth = 3)
@@ -166,5 +156,5 @@ pl.plot(x2, rho_values, "-m", linewidth = 3)
 pl.ylim(rmin, rmax)
 pl.xlim(dmin, dmax)
 
-with open('rho_plot.pkl','wb') as fid:
+with open('prueba_plot.pkl','wb') as fid:
     pickle.dump(ax1, fid)
