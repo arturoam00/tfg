@@ -31,11 +31,12 @@ tau_values = np.empty(shape = (size, size), dtype = float)
 
 for i in range(0,size):
     for j in range(0, size):
+        # print("sigma: %.3f y rho: %.3f" %(sigma_values[j], rho_values[i]))
         tau_values[i, j], _ , _= return_time(a, r, L, sigma = sigma_values[j], rho = rho_values[i])
         ###if tau0 required
         # tau0_values[i, j], _ , _= return_time(0, r, L, sigma = sigma_values[j], rho = rho_values[i])
 
-contours = pl.contour(rho_values, sigma_values, np.log10(tau_values), 6, colors = "black")
+contours = pl.contour(sigma_values, rho_values, np.log10(tau_values), 6, colors = "black")
 pl.clabel(contours, inline=True, fontsize=8)
 
 
@@ -53,6 +54,6 @@ pl.xlabel("Extension de la perturbación, " + r"$\sigma$")
 pl.ylabel("Intensidad de la perturbación, " + r"$\rho$")
 pl.title("Dispersión, d = %i" %a)
 
-pl.savefig("../images/recovery/return_%i" %a, bbox_inches = "tight")
+# pl.savefig("../images/recovery/return_%i" %a, bbox_inches = "tight")
 
-pl.show(block = False)
+pl.show(block = True)
