@@ -1,11 +1,7 @@
-
-##Auxiliary functions
-
 import numpy as np
-import pylab as pl
-import copy
+# import pylab as pl
+# import copy
 
-## Initial step function
 def step_fun(u, L, K, sigma, rho):
     s = sigma * rho
     l = len(u)
@@ -13,7 +9,6 @@ def step_fun(u, L, K, sigma, rho):
     u[int((.5 - sigma / 2) * l):int((.5 + sigma / 2) * l)] = (1 - rho) * K
     return u, s
 
-## Find nearest element index function which is equal to a certain value in a list within some threshold
 def find(vec, elem, eps = .01):  
     result = []
     for i in range(0, len(vec)):
@@ -23,7 +18,6 @@ def find(vec, elem, eps = .01):
                 elem[j] = 9999.99999
     return result
 
-# Fixes the number of divisions in the x axis according to sistem size, dispersal and growth rate 
 def fix_nx(L, a, r):
     Nx = 0
     if a != 0:
@@ -77,11 +71,11 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
     mixing = False
 
     # Values to choose when to show the plots according to recovered biomass
-    values      = K * (1 - np.array([1, .97, .9, .5, .2,  .025]) * s)
-    values_copy = copy.copy(values)
+    # values      = K * (1 - np.array([1, .97, .9, .5, .2,  .025]) * s)
+    # values_copy = copy.copy(values)
 
-    if show:
-        plot1 = pl.figure(1)
+    # if show:
+    #     plot1 = pl.figure(1)
 
     while suma < .99 * K:
         u[0:Nx] = u_1[0:Nx] + dt * r * u_1[0:Nx] * (1 - u_1[0:Nx] / K) * (u_1[0:Nx] / K) ** gamma\
@@ -108,84 +102,77 @@ def return_time(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K
                 mixing = True
                 break 
 
-        if show:
-            for i in range(0, len(values)):
-                if abs(suma - values[i])<eps:
-                    col_list.append(pl.plot(x, u, label = "t%i" %i))
-                    values[i] = 9999.9999
+        # if show:
+        #     for i in range(0, len(values)):
+        #         if abs(suma - values[i])<eps:
+        #             col_list.append(pl.plot(x, u, label = "t%i" %i))
+        #             values[i] = 9999.9999
 
     # print(umax)
 
+    # if show:
+
+    #     pl.xlim(0, x.max() )
+    #     pl.ylim(0, 1.2 * K)
+    #     pl.ylabel("Biomasa")
+    #     pl.xlabel("x")
+    #     pl.title("r = "+str(r)+" d = "+str(a))
+    #     pl.legend(loc = 4)
+    #     if saveImage:
+    #         pl.savefig("../images/perfiles/perfiles_%i_%i" %(r, a), bbox_inches = "tight")
+
+    #     # Plot para la integral de la biomasa en funcion de t
+    #     plot2 = pl.figure(2)
+
+    #     time_vec *= r ### fix the temporal scale to the r temporal scale 
+    #     time_vec_help = np.append(np.linspace(-.05 * time_vec.max(), 0, 100), time_vec)
+    #     integral_help = np.append(np.repeat(K, 100), integral)
+
+    #     pl.plot(time_vec_help, integral_help)    
+    #     pl.ylim(.95 - s, 1.02 * K)
+    #     pl.xlim(time_vec_help.min(), time_vec_help.max()+.003 * time_vec_help.max())
+    #     pl.ylabel("Biomasa total")
+    #     pl.xlabel("Tiempo")
+
+    #     markers = find(integral, values_copy)
+    #     c = 0
+    #     for i in markers:  
+    #         pl.plot(time_vec[i], integral[i], color = col_list[c][0].get_color(), marker = "o")    
+    #         c+=1
+    #     if saveImage:
+    #         pl.savefig("../images/perfiles/integral_%i_%i" %(r, a), bbox_inches = "tight")
 
 
-    if show:
-
-        pl.xlim(0, x.max() )
-        pl.ylim(0, 1.2 * K)
-        pl.ylabel("Biomasa")
-        pl.xlabel("x")
-        pl.title("r = "+str(r)+" d = "+str(a))
-        pl.legend(loc = 4)
-        if saveImage:
-            pl.savefig("../images/perfiles/perfiles_%i_%i" %(r, a), bbox_inches = "tight")
-
-        # Plot para la integral de la biomasa en funcion de t
-        plot2 = pl.figure(2)
-
-        time_vec *= r ### fix the temporal scale to the r temporal scale 
-        time_vec_help = np.append(np.linspace(-.05 * time_vec.max(), 0, 100), time_vec)
-        integral_help = np.append(np.repeat(K, 100), integral)
-
-        pl.plot(time_vec_help, integral_help)    
-        pl.ylim(.95 - s, 1.02 * K)
-        pl.xlim(time_vec_help.min(), time_vec_help.max()+.003 * time_vec_help.max())
-        pl.ylabel("Biomasa total")
-        pl.xlabel("Tiempo")
-
-        markers = find(integral, values_copy)
-        c = 0
-        for i in markers:  
-            pl.plot(time_vec[i], integral[i], color = col_list[c][0].get_color(), marker = "o")    
-            c+=1
-        if saveImage:
-            pl.savefig("../images/perfiles/integral_%i_%i" %(r, a), bbox_inches = "tight")
-
-
-        ## Plot para el parameter space de las disturbances
-        plot3 = pl.figure(3)
-        x_vec = np.linspace(0.01, 1, 100)
-        y_vec = s / x_vec
-        pl.plot(x_vec, y_vec, "k--")
-        pl.scatter(rho, sigma, s = 100, edgecolors = "red", facecolors = "none", linewidths = 2, clip_on = False)
-        # pl.scatter(sigma, rho, s = 100, edgecolors = "red", facecolors = "none", linewidths = 2, clip_on = False)
-        # pl.text(.35, .95, "(d)")
-        # pl.text(.95, .35, "(b)")
-        pl.xlabel("Intensidad de la perturbacion, " + r"$\rho$")
-        pl.ylabel("Extension de la perturbacion, "+ r"$\sigma$")
-        pl.title(r"$s = \sigma\rho$" + " = %.2f" %s)
-        pl.text(.6, s / .6 + .05, "s = %.2f" %s)
-        pl.ylim(0, 1)
-        pl.xlim(0, 1)
-        if saveImage:
-            pl.savefig("../images/perfiles/parametros_%i_%i" %(r, a), bbox_inches = "tight")
+    #     ## Plot para el parameter space de las disturbances
+    #     plot3 = pl.figure(3)
+    #     x_vec = np.linspace(0.01, 1, 100)
+    #     y_vec = s / x_vec
+    #     pl.plot(x_vec, y_vec, "k--")
+    #     pl.scatter(rho, sigma, s = 100, edgecolors = "red", facecolors = "none", linewidths = 2, clip_on = False)
+    #     # pl.scatter(sigma, rho, s = 100, edgecolors = "red", facecolors = "none", linewidths = 2, clip_on = False)
+    #     # pl.text(.35, .95, "(d)")
+    #     # pl.text(.95, .35, "(b)")
+    #     pl.xlabel("Intensidad de la perturbacion, " + r"$\rho$")
+    #     pl.ylabel("Extension de la perturbacion, "+ r"$\sigma$")
+    #     pl.title(r"$s = \sigma\rho$" + " = %.2f" %s)
+    #     pl.text(.6, s / .6 + .05, "s = %.2f" %s)
+    #     pl.ylim(0, 1)
+    #     pl.xlim(0, 1)
+    #     if saveImage:
+    #         pl.savefig("../images/perfiles/parametros_%i_%i" %(r, a), bbox_inches = "tight")
 
     return r * (t-dt), s, mixing
 
 
-def regimes(a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gamma = 3):
+def regimes(tau0, a, r, L, Nx = "", sigma = .5, rho = .85, I = step_fun, F = .4, K = 1, gamma = 3):
 
-    # 1 == IR, 2 == RR, 3 == MR
-    reg = 200
-    t = -99
+    # 100 == IR, 200 == RR, 300 == MR
+    reg = 100
     if a != 0:
         tau, _, mix = return_time(a, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
         if not mix:
-            tau0, _, _ = return_time(0, r, L, Nx, sigma, rho, I, F, K, gamma, compare = True)
-            t = tau0
-            if abs(tau-tau0) < 8: ##Para L he usado 30 !
-                reg = 100 
+            if abs(tau-tau0) > 8: ##Para L he usado 30 !
+                reg = 200
         else:
-            reg = 300 
-    else:
-        reg = 100 
-    return reg, t
+            reg = 300  
+    return reg
