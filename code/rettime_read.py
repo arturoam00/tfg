@@ -3,7 +3,7 @@ from aux import *
 import sys
 import pylab as pl
 
-with open("values_tau.npy", "rb") as file_tau:
+with open("values_tau_d1.npy", "rb") as file_tau:
     a = np.load(file_tau)
     with open("values_tau0.npy", "rb") as file_tau0:
         constants = np.load(file_tau)
