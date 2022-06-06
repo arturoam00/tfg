@@ -3,15 +3,15 @@ from aux import *
 import sys
 import pylab as pl
 
-with open("values_tau_d1.npy", "rb") as file_tau:
+with open("./out/values_tau_d1.npy", "rb") as file_tau:
     a = np.load(file_tau)
-    with open("values_tau0.npy", "rb") as file_tau0:
-        constants = np.load(file_tau)
-        if all(constants == np.load(file_tau0)):
-            tau0_values = np.load(file_tau0)
-            tau_values = np.load(file_tau)
-        else:
-            raise ValueError("Constants don't match")
+    constants = np.load(file_tau)
+    tau_values = np.load(file_tau)
+    # with open("./out/values_tau0.npy", "rb") as file_tau0:
+    #     if all(constants == np.load(file_tau0)):
+    #         tau0_values = np.load(file_tau0)
+    #     else:
+    #         raise ValueError("Constants don't match")
 
 r = float(constants[0])
 L = int(constants[1])
@@ -24,14 +24,14 @@ smax = float(constants[6])
 rho_values = np.linspace(rmin, rmax, size) 
 sigma_values = np.linspace(smin, smax, size) 
 
-contours = pl.contour(sigma_values, rho_values, np.log10(tau_values), 5, colors = "black")
+contours = pl.contour(sigma_values, rho_values, np.log10(tau_values), 6, colors = "black")
 pl.clabel(contours, inline=True, fontsize=8)
 
 
 #comment lines below if no regime boundaries needed
-#####
-diff_matrix = abs(tau_values - tau0_values)
-contour_boundary = pl.contour(sigma_values, rho_values, diff_matrix, [8], colors = "magenta", linewidths = 3, linestyles = "dashed")
+# #####
+# diff_matrix = abs(tau_values - tau0_values)
+# contour_boundary = pl.contour(sigma_values, rho_values, diff_matrix, [8], colors = "magenta", linewidths = 3, linestyles = "dashed")
 ####
 
 pl.imshow(np.log10(tau_values), extent = [smin, smax, rmin, rmax], origin = "lower", cmap = "RdGy", alpha = .5, interpolation = "bilinear")
@@ -44,4 +44,4 @@ pl.title("Dispersión, d = %i" %a)
 
 # pl.savefig("../images/recovery/return_%i" %a, bbox_inches = "tight")
 
-pl.show(block = True)
+pl.show()
