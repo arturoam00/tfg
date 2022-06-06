@@ -2,5 +2,4 @@ __pycache__/
 images/
 docs/
 trabajo/
-*.npy
 *.sublime*
