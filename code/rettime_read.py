@@ -7,11 +7,11 @@ with open("./out/values_tau_d1.npy", "rb") as file_tau:
     a = np.load(file_tau)
     constants = np.load(file_tau)
     tau_values = np.load(file_tau)
-    # with open("./out/values_tau0.npy", "rb") as file_tau0:
-    #     if all(constants == np.load(file_tau0)):
-    #         tau0_values = np.load(file_tau0)
-    #     else:
-    #         raise ValueError("Constants don't match")
+    with open("./out/values_tau0_30.npy", "rb") as file_tau0:
+        if all(constants == np.load(file_tau0)):
+            tau0_values = np.load(file_tau0)
+        else:
+            raise ValueError("Constants don't match")
 
 r = float(constants[0])
 L = int(constants[1])

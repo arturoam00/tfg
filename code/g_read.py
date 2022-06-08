@@ -3,7 +3,7 @@ import sys
 import pylab as pl
 from aux import *
 
-with open("g_values.npy", "rb") as f:
+with open("./out/g_values.npy", "rb") as f:
     constants = np.load(f)
     tau0 = np.load(f)
     regimes_array = np.load(f)
@@ -35,11 +35,14 @@ pl.ylabel("No - linealidad, " + r"$\gamma$")
 x1 = np.log10(L ** 2 * r / (2 * .37 * tau0) ** 2)
 x2 = np.log10(L ** 2 * r / 11 ** 2 * np.ones(size))
 
-line, = ax.plot(x1, g_values, "-m", linewidth = 3)
-line2, = ax.plot(x2, g_values, "-m", linewidth = 3)
+index = find(g_values, [0.9881], (gmax - gmin) / size / 2)
+
+line, = ax.plot(x1[index[0]:size], g_values[index[0]:size], "-m", linewidth = 3)
+line2, = ax.plot(x2, np.linspace(0.9881, gmax, size), "-m", linewidth = 3)
 pl.ylim(gmin, gmax)
 pl.xlim(dmin, dmax)
+line3, = ax.plot(dis_values_log, np.ones(size)*3, linestyle = "dashed", color = "white")
 
-# pl.savefig("../images/compara/comparaG_%i" %size, bbox_inches = "tight")
+pl.savefig("../images/compara/comparaG_%i" %size, bbox_inches = "tight")
 
 pl.show()

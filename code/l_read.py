@@ -3,7 +3,7 @@ import sys
 import pylab as pl
 from aux import *
 
-with open("l_values.npy", "rb") as f:
+with open("./out/l_values.npy", "rb") as f:
     constants = np.load(f)
     tau0 = float(np.load(f))
     regimes_array = np.load(f)
@@ -39,7 +39,8 @@ line, = ax.plot(dis_values_log, np.log10(y1), "-m", linewidth = 3)
 line2, = ax.plot(dis_values_log, np.log10(y2), "-m", linewidth = 3)
 pl.ylim(lmin, lmax)
 pl.xlim(dmin, dmax)
+line3, = ax.plot(dis_values_log, np.ones(size)*2, linestyle = "dashed", color = "white")
 
-# pl.savefig("../images/compara/comparaL_%i" %size, bbox_inches = "tight")
+pl.savefig("../images/compara/comparaL_%i" %size, bbox_inches = "tight")
 
 pl.show()

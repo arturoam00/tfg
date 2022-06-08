@@ -40,7 +40,8 @@ line, = ax.plot(x1[index[0]:size], rho_values[index[0]:size], "-m", linewidth = 
 line2, = ax.plot(x2, np.linspace(.6226, rmax, size), "-m", linewidth = 3)
 pl.ylim(rmin, rmax)
 pl.xlim(dmin, dmax)
+line3, = ax.plot(dis_values_log, np.ones(size)*.9, linestyle = "dashed", color = "white")
 
-# pl.savefig("../images/compara/comparaR_%i" %size, bbox_inches = "tight")
+pl.savefig("../images/compara/comparaR_%i" %size, bbox_inches = "tight")
 
 pl.show()

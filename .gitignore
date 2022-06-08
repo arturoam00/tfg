@@ -1,5 +1,5 @@
 __pycache__/
-images/
-docs/
-trabajo/
+#images/
+#docs/
+#trabajo/
 *.sublime*
