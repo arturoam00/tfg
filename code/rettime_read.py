@@ -3,11 +3,11 @@ from aux import *
 import sys
 import pylab as pl
 
-with open("./out/values_tau_d1.npy", "rb") as file_tau:
+with open("./out/values_tau_d1_100.npy", "rb") as file_tau:
     a = np.load(file_tau)
     constants = np.load(file_tau)
     tau_values = np.load(file_tau)
-    with open("./out/values_tau0_30.npy", "rb") as file_tau0:
+    with open("./out/values_tau0_100.npy", "rb") as file_tau0:
         if all(constants == np.load(file_tau0)):
             tau0_values = np.load(file_tau0)
         else:
@@ -16,6 +16,7 @@ with open("./out/values_tau_d1.npy", "rb") as file_tau:
 r = float(constants[0])
 L = int(constants[1])
 size = int(constants[2])
+print(size)
 rmin = float(constants[3])
 rmax = float(constants[4])
 smin = float(constants[5])
@@ -30,8 +31,8 @@ pl.clabel(contours, inline=True, fontsize=8)
 
 #comment lines below if no regime boundaries needed
 # #####
-# diff_matrix = abs(tau_values - tau0_values)
-# contour_boundary = pl.contour(sigma_values, rho_values, diff_matrix, [8], colors = "magenta", linewidths = 3, linestyles = "dashed")
+diff_matrix = abs(tau_values - tau0_values)
+contour_boundary = pl.contour(sigma_values, rho_values, diff_matrix, [8], colors = "magenta", linewidths = 3, linestyles = "dashed")
 ####
 
 pl.imshow(np.log10(tau_values), extent = [smin, smax, rmin, rmax], origin = "lower", cmap = "RdGy", alpha = .5, interpolation = "bilinear")

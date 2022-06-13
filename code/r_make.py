@@ -14,7 +14,7 @@ dis_values_log = np.linspace(dmin, dmax, size)
 dis_values = 10 ** dis_values_log
 
 rmin = .2
-rmax = .95
+rmax = .98
 constants = np.array([r, L, size, rho, gamma, dmin, dmax, rmin, rmax])
 
 rho_values = np.linspace(rmin, rmax, size)
