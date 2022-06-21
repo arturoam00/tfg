@@ -3,7 +3,7 @@ import sys
 import pylab as pl
 from aux import *
 
-with open("./out/l_values.npy", "rb") as f:
+with open("l_values.npy", "rb") as f:
     constants = np.load(f)
     tau0 = float(np.load(f))
     regimes_array = np.load(f)
