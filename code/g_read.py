@@ -3,7 +3,7 @@ import sys
 import pylab as pl
 from aux import *
 
-with open("./out/g_values_500.npy", "rb") as f:
+with open("./out/g_values.npy", "rb") as f:
     constants = np.load(f)
     tau0 = np.load(f)
     regimes_array = np.load(f)
@@ -43,6 +43,6 @@ pl.ylim(gmin, gmax)
 pl.xlim(dmin, dmax)
 line3, = ax.plot(dis_values_log, np.ones(size)*3, linestyle = "dashed", color = "white")
 
-pl.savefig("../images/compara/comparaG_%i" %size, bbox_inches = "tight")
+# pl.savefig("../images/compara/comparaG_%i" %size, bbox_inches = "tight")
 
 pl.show()
