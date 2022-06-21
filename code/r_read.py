@@ -3,7 +3,7 @@ import sys
 import pylab as pl
 from aux import *
 
-with open("./out/rho_values.npy", "rb") as f:
+with open("./out/rho_values_500.npy", "rb") as f:
     constants = np.load(f)
     tau0 = np.load(f)
     regimes_array = np.load(f)
@@ -38,10 +38,10 @@ index = find(rho_values, [0.6226], (rmax - rmin) / size / 2)
 
 line, = ax.plot(x1[index[0]:size], rho_values[index[0]:size], "-m", linewidth = 3)
 line2, = ax.plot(x2, np.linspace(.6226, rmax, size), "-m", linewidth = 3)
-pl.ylim(rmin, rmax)
+pl.ylim(.25, rmax)
 pl.xlim(dmin, dmax)
 line3, = ax.plot(dis_values_log, np.ones(size)*.9, linestyle = "dashed", color = "white")
 
-pl.savefig("../images/compara/comparaR_%i" %size, bbox_inches = "tight")
+# pl.savefig("../images/compara/comparaR_%i" %size, bbox_inches = "tight")
 
 pl.show()
