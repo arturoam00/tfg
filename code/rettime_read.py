@@ -10,11 +10,11 @@ with open("values_tau_d0.npy", "rb") as file_tau:
     print(a)
     constants = np.load(file_tau)
     tau_values = np.load(file_tau)
-    # with open("./out/values_tau0.npy", "rb") as file_tau0:
-    #     if all(constants == np.load(file_tau0)):
-    #         tau0_values = np.load(file_tau0)
-    #     else:
-    #         raise ValueError("Constants don't match")
+    with open("values_tau0.npy", "rb") as file_tau0:
+        if all(constants == np.load(file_tau0)):
+            tau0_values = np.load(file_tau0)
+        else:
+            raise ValueError("Constants don't match")
 
 r = float(constants[0])
 L = int(constants[1])
@@ -31,18 +31,19 @@ sigma_values = np.linspace(smin, smax, size)
 
 #comment lines below if no regime boundaries needed
 # #####
-# diff_matrix = abs(tau_values - tau0_values)
-# contour_boundary = pl.contour(sigma_values, rho_values, diff_matrix, [8], colors = "magenta", linewidths = 3, linestyles = "dashed")
+diff_matrix = abs(tau_values - tau0_values)
+diff_matrix = gaussian_filter(diff_matrix, 1)
+contour_boundary = pl.contour(sigma_values, rho_values, diff_matrix, [8], colors = "magenta", linewidths = 3, linestyles = "dashed")
 
-tau_values = gaussian_filter(tau_values, 1.5)
+tau_values = gaussian_filter(tau_values,    1.5)
 
-contours = pl.contour(sigma_values, rho_values, np.log10(tau_values),5, colors = "black")
+contours = pl.contour(sigma_values, rho_values, np.log10(tau_values),6, colors = "black")
 pl.clabel(contours, inline=True, fontsize=8)
 
 
 ####
 
-pl.imshow(np.log10(tau_values), extent = [smin, smax, rmin, rmax], origin = "lower", cmap = "RdGy", alpha = .5, interpolation = "bilinear")
+pl.imshow(np.log10(tau_values), extent = [smin, smax, rmin, rmax], origin = "lower", cmap = "RdGy", alpha = .5, interpolation = "none")
 
 pl.colorbar(label = "Tiempo de recuperación, " + r"$\log_{10}\tau$", drawedges = False)
 
