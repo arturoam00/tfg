@@ -5,7 +5,7 @@ import pylab as pl
 
 from scipy.ndimage import gaussian_filter
 
-with open("values_tau_d0.npy", "rb") as file_tau:
+with open("values_tau_d1.npy", "rb") as file_tau:
     a = np.load(file_tau)
     constants = np.load(file_tau)
     tau_values = np.load(file_tau)
@@ -29,13 +29,13 @@ sigma_values = np.linspace(smin, smax, size)
 
 # #### comment lines below if no regime boundaries needed
 diff_matrix = abs(tau_values - tau0_values)
-diff_matrix = gaussian_filter(diff_matrix, 0)
+# diff_matrix = gaussian_filter(diff_matrix, 0)
 contour_boundary = pl.contour(sigma_values, rho_values, diff_matrix, [8], colors = "magenta", linewidths = 3, linestyles = "dashed")
 # ####
 
-tau_values[0:size / 2] = gaussian_filter(tau_values[0:size / 2], 1)
+# tau_values = gaussian_filter(tau_values, .1)
 
-contours = pl.contour(sigma_values, rho_values, np.log10(tau_values),[.5, 1, 1.5, 2, 3, 3.5], colors = "black")
+contours = pl.contour(sigma_values, rho_values, np.log10(tau_values),[.5, 1, 1.5, 2, 2.5], colors = "black")
 pl.clabel(contours, inline=True, fontsize=8)
 
 
