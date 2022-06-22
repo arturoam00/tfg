@@ -3,6 +3,8 @@ import sys
 import pylab as pl
 from aux import *
 
+from scipy.ndimage import gaussian_filter
+
 with open("./out/rho_values.npy", "rb") as f:
     constants = np.load(f)
     tau0 = np.load(f)
