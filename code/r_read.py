@@ -44,6 +44,6 @@ pl.ylim(.25, rmax)
 pl.xlim(dmin, dmax)
 line3, = ax.plot(dis_values_log, np.ones(size)*.9, linestyle = "dashed", color = "white")
 
-# pl.savefig("../images/compara/comparaR_%i" %size, bbox_inches = "tight")
+pl.savefig("../images/compara/comparaR_%i" %size, bbox_inches = "tight")
 
 pl.show()
