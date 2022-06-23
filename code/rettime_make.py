@@ -8,9 +8,9 @@ L = int(sys.argv[3])
 size = int(sys.argv[4])
 
 rmin = .15 
-rmax = .98 #when working with tau0 rho can't reach 1 (.95)
+rmax = .97 #when working with tau0 rho can't reach 1 (.95)
 smin = .15
-smax = .99 #when working with r / d <<< sigma = 1 means dispersal does nothing and it's very slow
+smax = .97 #when working with r / d <<< sigma = 1 means dispersal does nothing and it's very slow
 
 constants = np.array([r, L, size, rmin, rmax, smin, smax])
 
