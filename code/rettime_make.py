@@ -22,7 +22,7 @@ tau0_values = np.ones(shape = (size, size), dtype = float)
 
 for i in range(0,size):
     for j in range(0, size):
-        print("Next is rho = %.3f and sigma = %.3f" %(rho_values[i], sigma_values[j]))
+        # print("Next is rho = %.3f and sigma = %.3f" %(rho_values[i], sigma_values[j]))
         tau_values[i, j], _ , _= return_time(a, r, L, sigma = sigma_values[j], rho = rho_values[i])
         # if rho_values[i] < .96:
         #     tau0_values[i, j], _ , _= return_time(0, r, L, sigma = sigma_values[j], rho = rho_values[i])
